@@ -1,4 +1,4 @@
-package com.bztda.employeeserviceportal;
+package com.bztda.service.portal.employee;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
