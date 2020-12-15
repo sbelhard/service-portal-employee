@@ -18,6 +18,71 @@ CREATE TABLE answers
     result      VARCHAR(64)
 );
 
+CREATE TABLE role(
+id BIGSERIAL PRIMARY KEY,
+role VARCHAR(64) UNIQUE NOT NULL
+);
+
+CREATE TABLE department(
+id BIGSERIAL PRIMARY KEY,
+department VARCHAR(256) UNIQUE NOT NULL
+);
+
+CREATE TABLE education(
+id BIGSERIAL PRIMARY KEY,
+education VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE hobbies(
+id BIGSERIAL PRIMARY KEY,
+hobbies VARCHAR(128) UNIQUE NOT NULL
+);
+
+CREATE TABLE employee(
+id BIGSERIAL PRIMARY KEY,
+last_name VARCHAR(256) NOT NULL,
+first_name VARCHAR(256) NOT NULL,
+patronymic VARCHAR(256) NOT NULL,
+position VARCHAR(256) NOT NULL,
+department_id BIGINT NOT NULL REFERENCES department(id),
+birth_day DATE NOT NULL,
+number_pass VARCHAR(256) NOT NULL UNIQUE,
+telephone VARCHAR(64) NOT NULL UNIQUE,
+email VARCHAR(256) NOT NULL UNIQUE,
+education_id BIGINT NOT NULL REFERENCES education(id),
+trainig VARCHAR(64) NOT NULL,
+hobbies_id BIGINT NOT NULL REFERENCES hobbies (id),
+date_end_contract DATE NOT NULL,
+role_id VARCHAR(64) NOT NULL,
+password VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE overall_criteria(
+id BIGSERIAL PRIMARY KEY,
+overall_criteria VARCHAR(256) UNIQUE NOT NULL
+);
+
+CREATE  TABLE criteria(
+id BIGSERIAL PRIMARY KET,
+criteria VARCHAR(256) UNIQUE NOT NULL,
+overall_criteria_id BIGINT NOT NULL REFERENCES overall_criteria (id)
+);
+
+CREATE TABLE evaluation(
+id BIGSERIAL PRIMARY KEY,
+value INT NOT NULL,
+date_evaluation DATE NOT NULL,
+valuing_user_id BIGINT NOT NULL REFERENCES employee (id),
+evaluate_user_id BIGINT NOT NULL REFERENCES employee (id),
+criteria_id BIGINT NOT NULL REFERENCES criteria (id)
+);
+
+CREATE TABLE rating(
+id BIGSERIAL PRIMARY KEY,
+rating BIGINT NOT NULL,
+employee_id BIGINT NOT NULL UNIQUE REFERENCES employee (id)
+);
+
 
 DROP TABLE questions;
 DROP TABLE answers;
