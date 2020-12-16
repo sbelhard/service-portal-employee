@@ -14,8 +14,11 @@ import java.util.List;
 @Builder
 public class QuestionDto {
 
-    private Long id;
-    private String question;
-    private List<AnswerDto> listAnswerDto;
+	private Long id;
+	private String question;
+	private List<AnswerDto> listAnswerDto;
 
+	public QuestionDto(String question) {
+		this.question = question;
+	}
 }
