@@ -18,8 +18,7 @@ CREATE TABLE answers
     result      VARCHAR(64)
 );
 
-
-CREATE TABLE education(
+CREATE TABLE educations(
 id BIGSERIAL PRIMARY KEY,
 education VARCHAR UNIQUE NOT NULL
 );
@@ -41,8 +40,8 @@ number_pass VARCHAR(256) NOT NULL UNIQUE,
 telephone VARCHAR(64) NOT NULL UNIQUE,
 email VARCHAR(256) NOT NULL UNIQUE,
 education_id BIGINT NOT NULL REFERENCES education(id),
-trainig VARCHAR(64) NOT NULL,
-hobbies_id BIGINT NOT NULL REFERENCES hobbies (id),
+training VARCHAR(64) NOT NULL,
+date_start_contract DATE NOT NULL,
 date_end_contract DATE NOT NULL,
 role_id BIGINT NOT NULL REFERENCES role (id),
 password VARCHAR(256) NOT NULL
@@ -65,7 +64,7 @@ value INT NOT NULL,
 date_evaluation DATE NOT NULL,
 valuing_user_id BIGINT NOT NULL REFERENCES employee (id),
 evaluate_user_id BIGINT NOT NULL REFERENCES employee (id),
-criteria_id BIGINT NOT NULL REFERENCES criteria (id)
+overall_criteria_id BIGINT NOT NULL REFERENCES criteria (id)
 );
 
 CREATE TABLE rating(
@@ -80,15 +79,43 @@ CREATE TABLE role
     role     VARCHAR(64) UNIQUE
 );
 
-CREATE TABLE departament
+CREATE TABLE departaments
 (
     id          BIGSERIAL PRIMARY KEY,
    departament     VARCHAR(256) UNIQUE
 );
 
+CREATE TABLE employee_hobbies(
+id BIGSERIAL PRIMARY KEY,
+employee_id BIGINT NOT NULL,
+hobbies_id BIGINT NOT NULL
+);
+
+CREATE TABLE type_inquiry(
+id BIGSERIAL PRIMARY KEY,
+type VARCHAR(512) UNIQUE NOT NULL,
+);
+
+CREATE TABLE inquiry(
+id BIGSERIAL PRIMARY KEY,
+date_start_inquiry DATE NOT NULL,
+date_end_inquiry DATE NOT NULL,
+organization_provided VARCHAR(512) NOT NULL,
+type_inquiry_id BIGINT NOT NULL REFERENCES type_inquiry(id),
+employee_id BIGINT NOT NULL REFERENCES employee (id)
+);
 
 DROP TABLE questions;
 DROP TABLE answers;
+DROP TABLE criteria;
+DROP TABLE evaluation;
+DROP TABLE overall_criteria;
+DROP TABLE employee;
+DROP TABLE rating;
+DROP TABLE evaluation;
+DROP TABLE employee_hobbies;
+
+
 
 
 INSERT INTO questions
