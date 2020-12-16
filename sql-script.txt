@@ -18,15 +18,6 @@ CREATE TABLE answers
     result      VARCHAR(64)
 );
 
-CREATE TABLE role(
-id BIGSERIAL PRIMARY KEY,
-role VARCHAR(64) UNIQUE NOT NULL
-);
-
-CREATE TABLE department(
-id BIGSERIAL PRIMARY KEY,
-department VARCHAR(256) UNIQUE NOT NULL
-);
 
 CREATE TABLE education(
 id BIGSERIAL PRIMARY KEY,
@@ -53,7 +44,7 @@ education_id BIGINT NOT NULL REFERENCES education(id),
 trainig VARCHAR(64) NOT NULL,
 hobbies_id BIGINT NOT NULL REFERENCES hobbies (id),
 date_end_contract DATE NOT NULL,
-role_id VARCHAR(64) NOT NULL,
+role_id BIGINT NOT NULL REFERENCES role (id),
 password VARCHAR(256) NOT NULL
 );
 
@@ -81,6 +72,18 @@ CREATE TABLE rating(
 id BIGSERIAL PRIMARY KEY,
 rating BIGINT NOT NULL,
 employee_id BIGINT NOT NULL UNIQUE REFERENCES employee (id)
+);
+
+CREATE TABLE role
+(
+    id          BIGSERIAL PRIMARY KEY,
+    role     VARCHAR(64) UNIQUE
+);
+
+CREATE TABLE departament
+(
+    id          BIGSERIAL PRIMARY KEY,
+   departament     VARCHAR(256) UNIQUE
 );
 
 
