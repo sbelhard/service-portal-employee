@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,20 +28,24 @@ import javax.persistence.Table;
 @Builder
 @Component
 @Entity
-@Table(name = "criteria", schema = "portal_storage")
-public class Criteria extends BaseEntity<Long> {
+@Table(name = "staff_evaluate", schema = "portal_storage")
+public class StaffEvaluate extends BaseEntity<Long> {
 
-    @Column(name = "criteria")
-    private String criteria;
+	@Column(name = "date_evaluation")
+	private LocalDate localDate;
 
-    @ManyToOne
-    @JoinColumn(name = "overall_criteria_id")
-    private OverallCriteria overallCriteria;
+	@ManyToOne
+	@JoinColumn(name = "valuing_employee_id")
+	private Employee employeeValuing;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "evaluation", schema = "portal_storage",
-            joinColumns = @JoinColumn(name = "criteria_id"),
-            inverseJoinColumns = @JoinColumn(name = "staff_evaluate_id"))
-    private List<StaffEvaluate> staffEvaluate = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "evaluate_employee_id")
+	private Employee employeeEvaluate;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "evaluation", schema = "portal_storage",
+			joinColumns = @JoinColumn(name = "staff_evaluate_id"),
+			inverseJoinColumns = @JoinColumn(name = "criteria_id"))
+	private List<Criteria> criteriaEvaluates = new ArrayList<>();
 
 }

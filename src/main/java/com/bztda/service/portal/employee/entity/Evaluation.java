@@ -10,23 +10,27 @@ import org.springframework.stereotype.Component;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import java.time.LocalDate;
 
+
 @Data
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Component
 @Entity
-@Table(name = "evaluation",schema = "portal_storage")
+@Table(name = "evaluation", schema = "portal_storage")
 public class Evaluation extends BaseEntity<Long> {
 
-    @Column(name = "value")
-    private int value;
+	@Column(name = "value")
+	private int value;
 
-    @Column(name = "date_evaluation")
-    private LocalDate dateEvaluation;
+	@Column(name = "criteria_id")
+	private Long criteriaId;
 
+	@Column(name = "staff_evaluate_id")
+	private Long staffEvaluateId;
 
 }
