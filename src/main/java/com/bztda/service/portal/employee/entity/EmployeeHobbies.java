@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Component
 @Entity
 @Table(name = "employee_hobbies", schema = "portal_storage")
-public class Employee_hobbies extends BaseEntity<Long> {
+public class EmployeeHobbies extends BaseEntity<Long> {
 
     @Column(name = "employee_id")
     private Long employeeId;
