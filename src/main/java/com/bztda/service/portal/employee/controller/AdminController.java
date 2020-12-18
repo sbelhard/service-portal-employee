@@ -32,31 +32,5 @@ public class AdminController {
     public String showAdminPage() {
         return "create-default-page";
     }
-
-    @GetMapping("add-question")
-    public String pageAddQuestion(Model model) {
-        List<AnswerDto> answerDtoList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            answerDtoList.add(new AnswerDto());
-        }
-        QuestionDto questionDto = QuestionDto.builder()
-                .listAnswerDto(answerDtoList)
-                .build();
-        model.addAttribute("questionDto", questionDto);
-        model.addAttribute("results", Result.values());
-        return "add-question";
-    }
-
-    @PostMapping("add-question")
-    public String addQuestion(QuestionDto questionDto) {
-        Question question = Question.builder()
-                .question(questionDto.getQuestion())
-                .build();
-        questionRepository.save(question);
-
-        answerService.getAnswerDtoAnswerAndSaveAnswer(questionDto, question);
-
-        return "info-add-question";
-    }
 }
 
