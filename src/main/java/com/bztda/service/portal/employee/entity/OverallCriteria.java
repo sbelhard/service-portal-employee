@@ -12,7 +12,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Data
 @EqualsAndHashCode(of = "id")
@@ -24,9 +27,9 @@ import java.util.List;
 @Table(name = "overall_criteria", schema = "portal_storage")
 public class OverallCriteria extends BaseEntity<Long> {
 
-    @Column(name = "overall_criteria")
-    private String overallCriteria;
+	@Column(name = "overall_criteria")
+	private String overallCriteria;
 
-    @OneToMany(mappedBy = "criteria", cascade = CascadeType.ALL)
-    private List<Criteria> criteria;
+	@OneToMany(mappedBy = "criteria")
+	private List<Criteria> criteria = new ArrayList<>();
 }

@@ -30,7 +30,7 @@ public class Hobbies extends BaseEntity<Long> {
     @Column(name = "hobbies")
     private String hobby;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "employee_hobbies", schema = "portal_storage",
             joinColumns = @JoinColumn(name = "hobbies_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id"))

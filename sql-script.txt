@@ -65,8 +65,8 @@ CREATE TABLE criteria
 
 CREATE TABLE staff_evaluate
 (
-    id               BIGSERIAL PRIMARY KEY,
-    date_evaluation  DATE   NOT NULL,
+    id                   BIGSERIAL PRIMARY KEY,
+    date_evaluation      DATE   NOT NULL,
     valuing_employee_id  BIGINT NOT NULL REFERENCES employee (id),
     evaluate_employee_id BIGINT NOT NULL REFERENCES employee (id)
 );
@@ -101,8 +101,8 @@ CREATE TABLE departments
 CREATE TABLE employee_hobbies
 (
     id          BIGSERIAL PRIMARY KEY,
-    employee_id BIGINT NOT NULL,
-    hobbies_id  BIGINT NOT NULL
+    employee_id BIGINT NOT NULL REFERENCES employee (id),
+    hobbies_id  BIGINT NOT NULL REFERENCES hobbies (id)
 );
 CREATE TABLE type_inquiry
 (
@@ -122,13 +122,15 @@ CREATE TABLE inquiry
 DROP TABLE questions;
 DROP TABLE answers;
 DROP TABLE criteria;
-DROP TABLE evaluation;
 DROP TABLE overall_criteria;
 DROP TABLE employee;
 DROP TABLE rating;
 DROP TABLE evaluation;
 DROP TABLE employee_hobbies;
-
+DROP TABLE inquiry;
+DROP TABLE type_inquiry;
+DROP  TABLE hobbies;
+DROP TABLE employee_hobbies;
 
 
 

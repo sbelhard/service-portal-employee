@@ -7,9 +7,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Data
 @EqualsAndHashCode(of = "id")
@@ -21,6 +26,9 @@ import javax.persistence.Table;
 @Table(name = "role", schema = "portal_storage")
 public class Role extends BaseEntity<Long> {
 
-    @Column(name = "role")
-    private String role;
+	@Column(name = "role")
+	private String role;
+
+	@OneToMany(mappedBy = "role")
+	private List<Employee> employees = new ArrayList<>();
 }

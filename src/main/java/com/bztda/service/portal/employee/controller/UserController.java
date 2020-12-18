@@ -24,7 +24,6 @@ public class UserController {
     }
 
     @GetMapping("/interview")
-    @ResponseBody
     public List<QuestionDto> getPageInterview() {
         return questionService.getQuestionRound();
     }

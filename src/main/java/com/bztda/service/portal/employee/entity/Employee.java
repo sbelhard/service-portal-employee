@@ -87,9 +87,12 @@ public class Employee extends BaseEntity<Long> {
 			inverseJoinColumns = @JoinColumn(name = "hobbies_id"))
 	private List<Hobbies> hobbies = new ArrayList<>();
 
-	@OneToMany(mappedBy = "staff_evaluate", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "employeeValuing")
 	private List<StaffEvaluate> staffEvaluateValuingEmployee;
 
-	@OneToMany(mappedBy = "staff_evaluate", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "employeeEvaluate")
 	private List<StaffEvaluate> staffEvaluateEvaluateEmployee;
+
+	@OneToMany(mappedBy = "employee")
+	private List<Inquiry> inquiries = new ArrayList<>();
 }
