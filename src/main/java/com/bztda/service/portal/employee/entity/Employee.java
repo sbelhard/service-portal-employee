@@ -7,17 +7,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +78,7 @@ public class Employee extends BaseEntity<Long> {
 	@JoinColumn(name = "role_id")
 	private Role role;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "employee_hobbies", schema = "portal_storage",
 			joinColumns = @JoinColumn(name = "employee_id"),
 			inverseJoinColumns = @JoinColumn(name = "hobbies_id"))

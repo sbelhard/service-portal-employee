@@ -7,18 +7,16 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -42,7 +40,7 @@ public class StaffEvaluate extends BaseEntity<Long> {
 	@JoinColumn(name = "evaluate_employee_id")
 	private Employee employeeEvaluate;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "evaluation", schema = "portal_storage",
 			joinColumns = @JoinColumn(name = "staff_evaluate_id"),
 			inverseJoinColumns = @JoinColumn(name = "criteria_id"))
