@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -26,9 +24,8 @@ public class AdminController {
     }
 
     @PostMapping(value = "/test-test", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void saveTest(@RequestBody Map<String, String> test) {
-        TestPostMethod build = TestPostMethod.builder().text(test.get("id")).build();
-        testPostMethodRepository.save(build);
+    public void saveTest(@RequestBody TestPostMethod testPostMethod) {
+        testPostMethodRepository.save(testPostMethod);
     }
 }
 
