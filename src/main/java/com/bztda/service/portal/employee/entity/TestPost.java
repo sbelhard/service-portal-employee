@@ -19,10 +19,10 @@ import javax.persistence.Table;
 @Builder
 @Component
 @Entity
-@Table(name = "testpost", schema = "portal_storage")
+@Table(name = "test_post", schema = "portal_storage")
 public class TestPost extends BaseEntity<Long> {
 
-	@Column(name = "question")
-	private String questionText;
+	@Column(name = "text")
+	private String text;
 
 }

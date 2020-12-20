@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,26 +18,24 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
 
-	@Autowired
-	private final QuestionService questionService;
+    @Autowired
+    private final QuestionService questionService;
 
-	@Autowired
-	private final TestPostRepository testPostRepository;
+    @Autowired
+    private final TestPostRepository testPostRepository;
 
-	@GetMapping("/user-page")
-	public String showPage() {
-		return "user-page";
-	}
+    @GetMapping("/user-page")
+    public String showPage() {
+        return "user-page";
+    }
 
-	@GetMapping("/interview")
-	public List<QuestionDto> getPageInterview() {
-		return questionService.getQuestionRound();
-	}
+    @GetMapping("/interview")
+    public List<QuestionDto> getPageInterview() {
+        return questionService.getQuestionRound();
+    }
 
-	@PostMapping("/test")
-	public void getInterview(String questionDto) {
-		testPostRepository.save(TestPost.builder()
-				.questionText(questionDto)
-				.build());
-	}
+    @PostMapping("/test-test")
+    public void getInterview(@RequestBody TestPost testPost) {
+        testPostRepository.save(testPost);
+    }
 }
