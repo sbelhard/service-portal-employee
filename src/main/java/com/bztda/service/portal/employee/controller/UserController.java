@@ -6,6 +6,7 @@ import com.bztda.service.portal.employee.repository.TestPostRepository;
 import com.bztda.service.portal.employee.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,7 @@ public class UserController {
         return questionService.getQuestionRound();
     }
 
-    @PostMapping("/test-test")
+    @PostMapping(name = "/test-test", produces = MediaType.APPLICATION_JSON_VALUE)
     public void getInterview(@RequestBody TestPost testPost) {
         testPostRepository.save(testPost);
     }
