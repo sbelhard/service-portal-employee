@@ -35,7 +35,7 @@ public class UserController {
         return questionService.getQuestionRound();
     }
 
-    @PostMapping(name = "/test-test", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/test-test", produces = MediaType.APPLICATION_JSON_VALUE)
     public void getInterview(@RequestBody TestPost testPost) {
         testPostRepository.save(testPost);
     }
