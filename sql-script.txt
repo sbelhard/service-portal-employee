@@ -6,15 +6,15 @@ SET SEARCH_PATH = portal_storage;
 
 CREATE TABLE questions
 (
-    id             BIGSERIAL PRIMARY KEY,
-    question TEXT UNIQUE NOT NULL,
+    id       BIGSERIAL PRIMARY KEY,
+    question TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE answers
 (
     id          BIGSERIAL PRIMARY KEY,
-    answer      TEXT NOT NULL,
-    question_id BIGINT      NOT NULL REFERENCES questions (id),
+    answer      TEXT   NOT NULL,
+    question_id BIGINT NOT NULL REFERENCES questions (id),
     result      VARCHAR(64)
 );
 
@@ -28,6 +28,18 @@ CREATE TABLE hobbies
 (
     id      BIGSERIAL PRIMARY KEY,
     hobbies VARCHAR(128) UNIQUE NOT NULL
+);
+
+CREATE TABLE departments
+(
+    id          BIGSERIAL PRIMARY KEY,
+    departament VARCHAR(256) UNIQUE NOT NULL
+);
+
+CREATE TABLE role
+(
+    id   BIGSERIAL PRIMARY KEY,
+    role VARCHAR(64) UNIQUE
 );
 
 CREATE TABLE employee
@@ -60,7 +72,7 @@ CREATE TABLE criteria
 (
     id                  BIGSERIAL PRIMARY KEY,
     criteria            VARCHAR(256) UNIQUE NOT NULL,
-    overall_criteria_id BIGINT  NOT NULL REFERENCES overall_criteria (id)
+    overall_criteria_id BIGINT              NOT NULL REFERENCES overall_criteria (id)
 );
 
 CREATE TABLE staff_evaluate
@@ -68,7 +80,7 @@ CREATE TABLE staff_evaluate
     id                   BIGSERIAL PRIMARY KEY,
     date_evaluation      DATE   NOT NULL,
     valuing_employee_id  BIGINT NOT NULL REFERENCES employee (id),
-    evaluate_employee_id BIGINT  REFERENCES employee (id)
+    evaluate_employee_id BIGINT REFERENCES employee (id)
 );
 
 CREATE TABLE evaluation
@@ -86,24 +98,13 @@ CREATE TABLE rating
     employee_id BIGINT NOT NULL UNIQUE REFERENCES employee (id)
 );
 
-CREATE TABLE role
-(
-    id   BIGSERIAL PRIMARY KEY,
-    role VARCHAR(64) UNIQUE
-);
-
-CREATE TABLE departments
-(
-    id          BIGSERIAL PRIMARY KEY,
-    departament VARCHAR(256) UNIQUE
-);
-
 CREATE TABLE employee_hobbies
 (
     id          BIGSERIAL PRIMARY KEY,
     employee_id BIGINT NOT NULL REFERENCES employee (id),
-    hobbies_id  BIGINT NOT NULL REFERENCES hobbies (id)
+    hobbies_id  BIGINT  REFERENCES hobbies (id)
 );
+
 CREATE TABLE type_inquiry
 (
     id   BIGSERIAL PRIMARY KEY,
@@ -130,9 +131,8 @@ DROP TABLE evaluation;
 DROP TABLE employee_hobbies;
 DROP TABLE inquiry;
 DROP TABLE type_inquiry;
-DROP  TABLE hobbies;
+DROP TABLE hobbies;
 DROP TABLE employee_hobbies;
-
 
 
 INSERT INTO questions
@@ -152,13 +152,13 @@ VALUES (3,
 
 INSERT INTO answers
 VALUES (1,
-        'На рабочее место, соответствующее требованиям по охране труда.',1,'FALSE');
+        'На рабочее место, соответствующее требованиям по охране труда.', 1, 'FALSE');
 
 INSERT INTO answers
 VALUES (2,
         'На рабочее место, соответствующее требованиям по охране труда.
 -На обучение безопасным методам и приемам работы, проведение инструктажа по
-вопросам охраны труда.',1,'FALSE');
+вопросам охраны труда.', 1, 'FALSE');
 
 INSERT INTO answers
 VALUES (3,
@@ -166,34 +166,34 @@ VALUES (3,
 вопросам охраны труда.На рабочее место, соответствующее требованиям по охране труда.
 На обеспечение необходимыми средствами индивидуальной защиты, средствами
 коллективной защиты, санитарно-бытовыми помещениями, оснащенными
-необходимыми устройствами и средствами.',1,'TRUE');
+необходимыми устройствами и средствами.', 1, 'TRUE');
 
 INSERT INTO answers
 VALUES (4,
-        'В случае, если работа ему не нравится.',2,'FALSE');
+        'В случае, если работа ему не нравится.', 2, 'FALSE');
 
 INSERT INTO answers
 VALUES (5,
-        'В случае, если эта работа низкооплачиваемая.',2,'FALSE');
+        'В случае, если эта работа низкооплачиваемая.', 2, 'FALSE');
 
 INSERT INTO answers
 VALUES (6,
         'В случае возникновения непосредственной опасности для жизни и здоровья его и
-окружающих до устранения этой опасности.',2,'TRUE');
+окружающих до устранения этой опасности.', 2, 'TRUE');
 
 INSERT INTO answers
 VALUES (7,
-        'Имеет.',3,'FALSE');
+        'Имеет.', 3, 'FALSE');
 
 INSERT INTO answers
 VALUES (9,
-        'Имеет, если считает, что может выполнять работу.',3,'FALSE');
+        'Имеет, если считает, что может выполнять работу.', 3, 'FALSE');
 
 INSERT INTO answers
 VALUES (8,
-        'Не имеет.',3,'TRUE');
+        'Не имеет.', 3, 'TRUE');
 
-        INSERT INTO departments
+INSERT INTO departments
 VALUES (1, 'Отдел кадров');
 
 INSERT INTO departments
@@ -334,6 +334,7 @@ VALUES (3, '2020-12-03', 5, 1);
 
 INSERT INTO staff_evaluate
 VALUES (4, '2020-11-12', 5);
+
 
 
 
