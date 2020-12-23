@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Builder
 @Component
 @Entity
-@Table(name = "test_post", schema = "portal_storage")
+@Table(name = "testpost", schema = "portal_storage")
 public class TestPost extends BaseEntity<Long> {
 
 	@Column(name = "text")
