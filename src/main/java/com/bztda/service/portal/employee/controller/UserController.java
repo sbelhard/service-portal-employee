@@ -30,7 +30,7 @@ public class UserController {
         return "user-page";
     }
 
-    @GetMapping("/interview")
+    @GetMapping(value = "/interview")
     public List<QuestionDto> getPageInterview() {
         return questionService.getQuestionRound();
     }
