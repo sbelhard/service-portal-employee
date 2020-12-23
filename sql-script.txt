@@ -60,7 +60,7 @@ CREATE TABLE criteria
 (
     id                  BIGSERIAL PRIMARY KEY,
     criteria            VARCHAR(256) UNIQUE NOT NULL,
-    overall_criteria_id BIGINT              NOT NULL REFERENCES overall_criteria (id)
+    overall_criteria_id BIGINT  NOT NULL REFERENCES overall_criteria (id)
 );
 
 CREATE TABLE staff_evaluate
@@ -68,7 +68,7 @@ CREATE TABLE staff_evaluate
     id                   BIGSERIAL PRIMARY KEY,
     date_evaluation      DATE   NOT NULL,
     valuing_employee_id  BIGINT NOT NULL REFERENCES employee (id),
-    evaluate_employee_id BIGINT NOT NULL REFERENCES employee (id)
+    evaluate_employee_id BIGINT  REFERENCES employee (id)
 );
 
 CREATE TABLE evaluation
@@ -118,6 +118,7 @@ CREATE TABLE inquiry
     type_inquiry_id       BIGINT       NOT NULL REFERENCES type_inquiry (id),
     employee_id           BIGINT       NOT NULL REFERENCES employee (id)
 );
+
 
 DROP TABLE questions;
 DROP TABLE answers;
@@ -192,60 +193,147 @@ INSERT INTO answers
 VALUES (8,
         'Не имеет.',3,'TRUE');
 
-INSERT INTO questions
-VALUES (1,
-        'На что из указанного в вариантах ответа имеет право работающий?');
+        INSERT INTO departments
+VALUES (1, 'Отдел кадров');
 
-INSERT INTO questions
-VALUES (2,
-        'В каком из указанных ниже случаев работающий имеет право отказаться
-от выполнения порученной работы?');
+INSERT INTO departments
+VALUES (2, 'Отдел учета и планирования');
 
-INSERT INTO questions
-VALUES (3,
-        'Имеет ли право работник приступать к работе, в состоянии, связанном с
-болезнью, препятствующем выполнению работ?');
+INSERT INTO departments
+VALUES (3, 'Конструкторский отдел');
+
+INSERT INTO departments
+VALUES (4, 'Отдел разработки деталей');
+
+INSERT INTO departments
+VALUES (5, 'Управление предприятием');
+
+INSERT INTO departments
+VALUES (6, 'Отдел бухгалтерского учета');
 
 
-INSERT INTO answers
-VALUES (1, 1,'FALSE',
-        'На рабочее место, соответствующее требованиям по охране труда.');
+INSERT INTO educations
+VALUES (1, 'Общее среднее образование');
 
-INSERT INTO answers
-VALUES (2, 1,'FALSE',
-        'На рабочее место, соответствующее требованиям по охране труда.
--На обучение безопасным методам и приемам работы, проведение инструктажа по
-вопросам охраны труда.');
+INSERT INTO educations
+VALUES (2, 'Специальное образование');
 
-INSERT INTO answers
-VALUES (3, 1,'TRUE',
-        'На обучение безопасным методам и приемам работы, проведение инструктажа по
-вопросам охраны труда.На рабочее место, соответствующее требованиям по охране труда.
-На обеспечение необходимыми средствами индивидуальной защиты, средствами
-коллективной защиты, санитарно-бытовыми помещениями, оснащенными
-необходимыми устройствами и средствами.');
+INSERT INTO educations
+VALUES (3, 'Профессионально-техническое образование');
 
-INSERT INTO answers
-VALUES (4, 2,'FALSE',
-        'В случае, если работа ему не нравится.');
+INSERT INTO educations
+VALUES (4, 'Высшее образование');
 
-INSERT INTO answers
-VALUES (5, 2, 'FALSE',
-        'В случае, если эта работа низкооплачиваемая.');
 
-INSERT INTO answers
-VALUES (6, 2, 'TRUE',
-        'В случае возникновения непосредственной опасности для жизни и здоровья его и
-окружающих до устранения этой опасности.');
+INSERT INTO hobbies
+VALUES (1, 'Спорт');
 
-INSERT INTO answers
-VALUES (7, 3,'FALSE',
-        'Имеет.');
+INSERT INTO hobbies
+VALUES (2, 'Литература');
 
-INSERT INTO answers
-VALUES (9, 3,'FALSE',
-        'Имеет, если считает, что может выполнять работу.');
+INSERT INTO hobbies
+VALUES (3, 'Кулинария');
 
-INSERT INTO answers
-VALUES (8, 3,'TRUE',
-        'Не имеет.');
+INSERT INTO hobbies
+VALUES (4, 'Искусство');
+
+INSERT INTO hobbies
+VALUES (5, 'Охота');
+
+INSERT INTO hobbies
+VALUES (6, 'Рыбалка');
+
+
+INSERT INTO role
+VALUES (1, 'Admin');
+
+INSERT INTO role
+VALUES (2, 'User');
+
+INSERT INTO role
+VALUES (3, 'Manager');
+
+
+INSERT INTO employee
+VALUES (1, 'Иванов', 'Иван', 'Иванович', 'Директор', 5, '1970-12-23', '000001', '+375293330000',
+        'ivan.ivanov@gmail.com', 4, 'TRUE', '2000-12-23', '2025-12-22', 3, '000001');
+INSERT INTO employee
+VALUES (2, 'Петров', 'Петр', 'Петрович', 'Заместитель директор', 5, '1974-09-11', '000002', '+375294440000',
+        'petr.petrov@gmail.com', 4, 'TRUE', '2008-01-20', '2025-01-19', 3, '000002');
+INSERT INTO employee
+VALUES (4, 'Cидоров', 'Артур', 'Николаевич', 'Конструктор', 5, '1982-10-11', '000003', '+375294450000',
+        'arthur.sidorov@gmail.com', 4, 'TRUE', '2012-10-15', '2022-10-14', 2, '000003');
+INSERT INTO employee
+VALUES (5, 'Крот', 'Матвей', 'Николаевич', 'Конструктор', 3, '1985-10-11', '000004', '+375294450010', 'krot@gmail.com',
+        4, 'TRUE', '2020-10-15', '2021-10-14', 2, '000004');
+INSERT INTO employee
+VALUES (6, 'Иванова', 'Мария', 'Васильевна', 'Главный бухгалтер', 6, '1990-05-13', '000005', '+375293350000',
+        'maria.ivanova@gmail.com', 4, 'TRUE', '2015-01-05', '2025-01-04', 2, '000005');
+
+INSERT INTO employee
+VALUES (7, 'Гормаза', 'Алексей', 'Викторович', 'Рабочий цеха', 4, '1973-03-17', '000007', '+375293350012',
+        'alex.garmaza@gmail.com', 3, 'FALSE', '2013-04-05', '2022-04-04', 2, '000006');
+
+INSERT INTO employee
+VALUES (8, 'Клин', 'Валерия', 'Викторовна', 'Руководитель отдела кадров', 1, '1989-03-17', '000008', '+375293350112',
+        'valeria.klin@gmail.com', 4, 'TRUE', '2018-03-03', '2021-03-02', 2, '000007');
+
+
+INSERT INTO rating
+VALUES (1, 5, 1);
+
+INSERT INTO rating
+VALUES (2, 4, 2);
+
+INSERT INTO rating
+VALUES (3, 2, 5);
+
+
+
+INSERT INTO overall_criteria
+VALUES (1, 'Оценка качества работы');
+
+INSERT INTO overall_criteria
+VALUES (2, 'Оценка условий труда');
+
+
+INSERT INTO criteria
+VALUES (1, 'Компетентность', 1);
+
+INSERT INTO criteria
+VALUES (2, 'Самоорганизованность', 1);
+
+INSERT INTO criteria
+VALUES (3, 'Объективность', 1);
+
+INSERT INTO criteria
+VALUES (7, 'Оценка качества работы', 1);
+
+
+
+INSERT INTO criteria
+VALUES (4, 'Комфортность условий труда', 2);
+
+INSERT INTO criteria
+VALUES (5, 'Тяжесть выполняемой работы', 2);
+
+INSERT INTO criteria
+VALUES (6, 'Оборудованное рабочее место со всеми необходимыми материалами', 2);
+
+INSERT INTO criteria
+VALUES (8, 'Оценка условий труда', 2);
+
+INSERT INTO staff_evaluate
+VALUES (1, '2020-10-12', 4, 1);
+
+INSERT INTO staff_evaluate
+VALUES (2, '2020-11-11', 2, 1);
+
+INSERT INTO staff_evaluate
+VALUES (3, '2020-12-03', 5, 1);
+
+INSERT INTO staff_evaluate
+VALUES (4, '2020-11-12', 5);
+
+
+
