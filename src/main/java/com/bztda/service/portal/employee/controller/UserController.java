@@ -30,12 +30,12 @@ public class UserController {
         return "user-page";
     }
 
-    @GetMapping("/interview")
+    @GetMapping(value = "/interview")
     public List<QuestionDto> getPageInterview() {
         return questionService.getQuestionRound();
     }
 
-    @PostMapping(name = "/test-test", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/test-test", produces = MediaType.APPLICATION_JSON_VALUE)
     public void getInterview(@RequestBody TestPost testPost) {
         testPostRepository.save(testPost);
     }
