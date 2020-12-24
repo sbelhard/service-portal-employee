@@ -69,8 +69,7 @@ public class EvaluationController {
 
     }
 
-
-    @GetMapping("/departments/{department}")
+    @GetMapping("/department/{department}")
     public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
         List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
         return employeeService.editEmployee(employeeByDepartment);
