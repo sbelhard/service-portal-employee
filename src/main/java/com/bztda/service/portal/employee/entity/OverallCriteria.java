@@ -1,23 +1,24 @@
 package com.bztda.service.portal.employee.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
+@ToString(exclude = "criterias")
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,9 +28,10 @@ import java.util.List;
 @Table(name = "overall_criteria", schema = "portal_storage")
 public class OverallCriteria extends BaseEntity<Long> {
 
-	@Column(name = "overall_criteria")
-	private String overallCriteria;
+    @Column(name = "overall_criteria")
+    private String overallCriteria;
 
-	@OneToMany(mappedBy = "criteria")
-	private List<Criteria> criteria = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "overallCriteriaCriteria")
+    private List<Criteria> criterias = new ArrayList<>();
 }
