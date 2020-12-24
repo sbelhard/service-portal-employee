@@ -4,8 +4,12 @@ import com.bztda.service.portal.employee.entity.Department;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
-public interface DepartmentRepository extends PagingAndSortingRepository<Department,Long> {
+public interface DepartmentRepository extends PagingAndSortingRepository<Department, Long> {
+
+	List<Department> findAll();
 
 }

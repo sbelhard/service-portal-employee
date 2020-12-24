@@ -1,5 +1,6 @@
 package com.bztda.service.portal.employee.repository;
 
+import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Employee;
 import com.bztda.service.portal.employee.entity.Evaluation;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -11,5 +12,6 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
 
+	List<Employee> findByDepartment(Department department);
 
 }
