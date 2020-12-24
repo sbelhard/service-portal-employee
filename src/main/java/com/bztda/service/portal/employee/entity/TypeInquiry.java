@@ -31,8 +31,4 @@ public class TypeInquiry extends BaseEntity<Long> {
 
 	@OneToMany(mappedBy = "typeInquiry")
 	private List<Inquiry> inquiries = new ArrayList<>();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dev-heroku
