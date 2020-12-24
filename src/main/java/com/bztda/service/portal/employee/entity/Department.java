@@ -32,6 +32,6 @@ public class Department extends BaseEntity<Long> {
 	@Column(name = "department")
 	private String department;
 
-	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "department")
 	private List<Employee> employees = new ArrayList<>();
 }
