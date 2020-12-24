@@ -54,7 +54,7 @@ public class Employee extends BaseEntity<Long> {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "trainig")
+	@Column(name = "training")
 	private boolean training;
 
 	@Column(name = "date_end_contract")
