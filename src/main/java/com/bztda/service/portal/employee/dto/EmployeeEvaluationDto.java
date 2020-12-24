@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EmployeeEvaluationDto {
 
-	private String firstName;
-	private String lastName;
-	private String patronymic;
-	private String position;
+    private String lastName;
+    private String firstName;
+    private String patronymic;
+    private String position;
 
 }

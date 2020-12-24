@@ -33,7 +33,7 @@ CREATE TABLE hobbies
 CREATE TABLE departments
 (
     id          BIGSERIAL PRIMARY KEY,
-    departament VARCHAR(256) UNIQUE NOT NULL
+    department VARCHAR(256) UNIQUE NOT NULL
 );
 
 CREATE TABLE role

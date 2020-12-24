@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -29,21 +30,21 @@ import java.util.List;
 @Table(name = "staff_evaluate", schema = "portal_storage")
 public class StaffEvaluate extends BaseEntity<Long> {
 
-	@Column(name = "date_evaluation")
-	private LocalDate localDate;
+    @Column(name = "date_evaluation")
+    private LocalDate localDate;
 
-	@ManyToOne
-	@JoinColumn(name = "valuing_employee_id")
-	private Employee employeeValuing;
+    @ManyToOne
+    @JoinColumn(name = "valuing_employee_id")
+    private Employee employeeValuing;
 
-	@ManyToOne
-	@JoinColumn(name = "evaluate_employee_id")
-	private Employee employeeEvaluate;
+    @ManyToOne
+    @JoinColumn(name = "evaluate_employee_id")
+    private Employee employeeEvaluate;
 
-	@ManyToMany
-	@JoinTable(name = "evaluation", schema = "portal_storage",
-			joinColumns = @JoinColumn(name = "staff_evaluate_id"),
-			inverseJoinColumns = @JoinColumn(name = "criteria_id"))
-	private List<Criteria> criteriaEvaluates = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "evaluation", schema = "portal_storage",
+            joinColumns = @JoinColumn(name = "staff_evaluate_id"),
+            inverseJoinColumns = @JoinColumn(name = "criteria_id"))
+    private List<Criteria> criteriaEvaluates = new ArrayList<>();
 
 }
