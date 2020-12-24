@@ -4,6 +4,7 @@ import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Employee;
 import com.bztda.service.portal.employee.repository.DepartmentRepository;
 import com.bztda.service.portal.employee.repository.EmployeeRepository;
+import com.bztda.service.portal.employee.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -35,7 +36,7 @@ public class EvaluationController {
 
 	@PostMapping(value = "/departments", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Employee> getEmployee(@RequestBody String department) {
-		return employeeRepository.findByDepartment(Department.builder()
+		return employeeRepository.findByDepartmentEmployee(Department.builder()
 				.department(department)
 				.build());
 	}

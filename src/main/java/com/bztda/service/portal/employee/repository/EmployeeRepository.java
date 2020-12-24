@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
 
-	List<Employee> findByDepartment(Department department);
+	List<Employee> findByDepartmentEmployee(Department department);
 
 }

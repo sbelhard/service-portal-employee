@@ -5,22 +5,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
+@ToString(exclude = {"hobbies", "staffEvaluateEvaluateEmployee", "staffEvaluateValuingEmployee", "inquiries"})
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -66,9 +70,9 @@ public class Employee extends BaseEntity<Long> {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id")
-	private Department department;
+	private Department departmentEmployee;
 
 	@ManyToOne
 	@JoinColumn(name = "education_id")
@@ -85,10 +89,10 @@ public class Employee extends BaseEntity<Long> {
 	private List<Hobbies> hobbies = new ArrayList<>();
 
 	@OneToMany(mappedBy = "employeeValuing")
-	private List<StaffEvaluate> staffEvaluateValuingEmployee;
+	private List<StaffEvaluate> staffEvaluateValuingEmployee = new ArrayList<>();
 
 	@OneToMany(mappedBy = "employeeEvaluate")
-	private List<StaffEvaluate> staffEvaluateEvaluateEmployee;
+	private List<StaffEvaluate> staffEvaluateEvaluateEmployee = new ArrayList<>();
 
 	@OneToMany(mappedBy = "employee")
 	private List<Inquiry> inquiries = new ArrayList<>();
