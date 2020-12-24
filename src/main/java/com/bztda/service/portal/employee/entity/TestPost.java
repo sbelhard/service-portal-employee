@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-
 @Data
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
@@ -19,10 +18,9 @@ import javax.persistence.Table;
 @Builder
 @Component
 @Entity
-@Table(name = "testpost", schema = "portal_storage")
+@Table(name = "test_post", schema = "portal_storage")
 public class TestPost extends BaseEntity<Long> {
 
-	@Column(name = "text")
-	private String text;
-
+    @Column(name = "text")
+    private String text;
 }

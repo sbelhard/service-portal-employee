@@ -30,8 +30,8 @@ import javax.persistence.Table;
 @Table(name = "criteria", schema = "portal_storage")
 public class Criteria extends BaseEntity<Long> {
 
-	@Column(name = "criteria")
-	private String criteria;
+    @Column(name = "criteria")
+    private String criteria;
 
 	@ManyToOne
 	@JoinColumn(name = "overall_criteria_id")

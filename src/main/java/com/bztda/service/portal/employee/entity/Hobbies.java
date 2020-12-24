@@ -1,4 +1,3 @@
-
 package com.bztda.service.portal.employee.entity;
 
 import lombok.AllArgsConstructor;
@@ -28,12 +27,12 @@ import java.util.List;
 @Table(name = "hobbies", schema = "portal_storage")
 public class Hobbies extends BaseEntity<Long> {
 
-	@Column(name = "hobbies")
-	private String hobby;
+    @Column(name = "hobbies")
+    private String hobby;
 
-	@ManyToMany
-	@JoinTable(name = "employee_hobbies", schema = "portal_storage",
-			joinColumns = @JoinColumn(name = "hobbies_id"),
-			inverseJoinColumns = @JoinColumn(name = "employee_id"))
-	private List<Employee> employees = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "employee_hobbies", schema = "portal_storage",
+            joinColumns = @JoinColumn(name = "hobbies_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    private List<Employee> employees = new ArrayList<>();
 }

@@ -21,9 +21,9 @@ import javax.persistence.Table;
 @Table(name = "employee_hobbies", schema = "portal_storage")
 public class EmployeeHobbies extends BaseEntity<Long> {
 
-	@Column(name = "employee_id")
-	private Long employeeId;
+    @Column(name = "employee_id")
+    private Long employeeId;
 
-	@Column(name = "hobbies_id")
-	private Long hobbiesId;
+    @Column(name = "hobbies_id")
+    private Long hobbiesId;
 }

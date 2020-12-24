@@ -1,11 +1,9 @@
 package com.bztda.service.portal.employee.repository;
 
-import com.bztda.service.portal.employee.entity.Inquiry;
+import com.bztda.service.portal.employee.entity.TestPost;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public interface InquiryRepository extends PagingAndSortingRepository<Inquiry, Long> {
-
+public interface TestPostMethodRepository extends PagingAndSortingRepository<TestPost, Long> {
 }
