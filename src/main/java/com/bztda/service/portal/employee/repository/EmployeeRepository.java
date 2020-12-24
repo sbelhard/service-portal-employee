@@ -14,4 +14,6 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 
 	List<Employee> findByDepartment(Department department);
 
+	List<Employee> findAll();
+
 }

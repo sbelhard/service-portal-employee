@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,7 +33,7 @@ public class Department extends BaseEntity<Long> {
 
 	@Column(name = "department")
 	private String department;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "department")
 	private List<Employee> employees = new ArrayList<>();
