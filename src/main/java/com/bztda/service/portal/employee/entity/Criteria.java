@@ -33,14 +33,14 @@ public class Criteria extends BaseEntity<Long> {
     @Column(name = "criteria")
     private String criteria;
 
-    @ManyToOne
-    @JoinColumn(name = "overall_criteria_id")
-    private OverallCriteria overallCriteria;
+	@ManyToOne
+	@JoinColumn(name = "overall_criteria_id")
+	private OverallCriteria overallCriteria;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "evaluation", schema = "portal_storage",
-            joinColumns = @JoinColumn(name = "criteria_id"),
-            inverseJoinColumns = @JoinColumn(name = "staff_evaluate_id"))
-    private List<StaffEvaluate> staffEvaluate = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "evaluation", schema = "portal_storage",
+			joinColumns = @JoinColumn(name = "criteria_id"),
+			inverseJoinColumns = @JoinColumn(name = "staff_evaluate_id"))
+	private List<StaffEvaluate> staffEvaluate = new ArrayList<>();
 
 }

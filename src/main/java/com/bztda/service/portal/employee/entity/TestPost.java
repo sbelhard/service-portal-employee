@@ -7,12 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -23,16 +19,10 @@ import javax.persistence.Table;
 @Builder
 @Component
 @Entity
-@Table(name = "type_inquiry", schema = "portal_storage")
-public class TypeInquiry extends BaseEntity<Long> {
+@Table(name = "testpost", schema = "portal_storage")
+public class TestPost extends BaseEntity<Long> {
 
-	@Column(name = "type")
-	private String type;
+	@Column(name = "text")
+	private String text;
 
-	@OneToMany(mappedBy = "typeInquiry")
-	private List<Inquiry> inquiries = new ArrayList<>();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dev-heroku

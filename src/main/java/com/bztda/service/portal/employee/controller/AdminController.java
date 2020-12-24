@@ -1,7 +1,11 @@
 package com.bztda.service.portal.employee.controller;
 
-import com.bztda.service.portal.employee.entity.TestPostMethod;
-import com.bztda.service.portal.employee.repository.TestPostMethodRepository;
+import com.bztda.service.portal.employee.dto.AnswerDto;
+import com.bztda.service.portal.employee.dto.QuestionDto;
+import com.bztda.service.portal.employee.entity.Question;
+import com.bztda.service.portal.employee.entity.Result;
+import com.bztda.service.portal.employee.repository.QuestionRepository;
+import com.bztda.service.portal.employee.service.AnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("api/")
 public class AdminController {
 
     @Autowired
