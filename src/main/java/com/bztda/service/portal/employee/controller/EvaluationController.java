@@ -33,7 +33,7 @@ public class EvaluationController {
 		return departmentRepository.findAll();
 	}
 
-	@PostMapping(value = "/department", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/departments", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Employee> getEmployee(@RequestBody String department) {
 		return employeeRepository.findByDepartment(Department.builder()
 				.department(department)
