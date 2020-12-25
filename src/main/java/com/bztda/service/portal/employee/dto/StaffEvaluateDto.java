@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 
 
 @Data
@@ -15,6 +16,6 @@ public class StaffEvaluateDto {
 
 	private Long valuingEmployeeId;
 	private Long evaluateEmployeeId;
-	private String dateEvaluation;
+	/*private LocalDate dateEvaluation;*/
 
 }

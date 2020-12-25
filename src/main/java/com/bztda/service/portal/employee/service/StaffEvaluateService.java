@@ -22,7 +22,7 @@ public class StaffEvaluateService {
 		StaffEvaluate staffEvaluate = StaffEvaluate.builder()
 				.employeeValuing(employeeRepository.findById(staffEvaluateDto.getValuingEmployeeId()).orElseThrow(NullPointerException::new))
 				.employeeEvaluate(employeeRepository.findById(staffEvaluateDto.getEvaluateEmployeeId()).orElseThrow(NullPointerException::new))
-				.localDate(LocalDate.parse(staffEvaluateDto.getDateEvaluation()))
+				.localDate(LocalDate.now())
 				.build();
 		return staffEvaluate;
 	}
