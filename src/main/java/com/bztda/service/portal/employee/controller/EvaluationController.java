@@ -15,6 +15,7 @@ import com.bztda.service.portal.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,7 +69,7 @@ public class EvaluationController {
 	public void getEvaluation() {
 	}
 
-	@PostMapping("/department/{department}")
+	@GetMapping("/department/{department}")
 	public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
 		List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
 		return employeeService.editEmployee(employeeByDepartment);
