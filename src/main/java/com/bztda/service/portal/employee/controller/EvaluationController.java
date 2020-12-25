@@ -1,6 +1,7 @@
 package com.bztda.service.portal.employee.controller;
 
 import com.bztda.service.portal.employee.dto.EmployeeEvaluationDto;
+import com.bztda.service.portal.employee.dto.StaffEvaluateDto;
 import com.bztda.service.portal.employee.entity.Criteria;
 import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Employee;
@@ -12,16 +13,21 @@ import com.bztda.service.portal.employee.repository.EvaluationRepository;
 import com.bztda.service.portal.employee.repository.OverallCriteriaRepository;
 import com.bztda.service.portal.employee.repository.StaffEvaluateRepository;
 import com.bztda.service.portal.employee.service.EmployeeService;
+import com.bztda.service.portal.employee.service.StaffEvaluateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+import javax.naming.ldap.PagedResultsControl;
 
 
 @RestController
@@ -50,6 +56,9 @@ public class EvaluationController {
 	@Autowired
 	private final EvaluationRepository evaluationRepository;
 
+	@Autowired
+	private final StaffEvaluateService staffEvaluateService;
+
 	@GetMapping("/department")
 	public List<Department> getDepartments() {
 		return departmentRepository.findAll();
@@ -73,5 +82,10 @@ public class EvaluationController {
 	public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
 		List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
 		return employeeService.editEmployee(employeeByDepartment);
+	}
+
+	@PostMapping(value = "/evaluation/staff-evaluation", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void getStaffEvaluation(@RequestBody StaffEvaluateDto staffEvaluateDto) {
+		staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
 	}
 }

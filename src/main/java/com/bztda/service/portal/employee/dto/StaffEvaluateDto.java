@@ -6,16 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EmployeeEvaluationDto {
+public class StaffEvaluateDto {
 
-	private Long id;
-	private String lastName;
-	private String firstName;
-	private String patronymic;
-	private String position;
+	private Long valuingEmployeeId;
+	private Long evaluateEmployeeId;
+	private String dateEvaluation;
 
 }
