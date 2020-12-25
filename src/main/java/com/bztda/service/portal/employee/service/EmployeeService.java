@@ -13,20 +13,21 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
-    public List<EmployeeEvaluationDto> editEmployee(List<Employee> employees) {
-        List<EmployeeEvaluationDto> employeeEvaluationDtoList = new ArrayList<>();
-        employees.forEach(employee -> {
-            employeeEvaluationDtoList.add(EmployeeEvaluationDto.builder()
-                    .lastName(employee.getLastName())
-                    .firstName(employee.getFirst_name())
-                    .patronymic(employee.getPatronymic())
-                    .position(employee.getPosition())
-                    .build());
-        });
-        return employeeEvaluationDtoList;
-    }
+	public List<EmployeeEvaluationDto> editEmployee(List<Employee> employees) {
+		List<EmployeeEvaluationDto> employeeEvaluationDtoList = new ArrayList<>();
+		employees.forEach(employee -> {
+			employeeEvaluationDtoList.add(EmployeeEvaluationDto.builder()
+					.id(employee.getId())
+					.lastName(employee.getLastName())
+					.firstName(employee.getFirst_name())
+					.patronymic(employee.getPatronymic())
+					.position(employee.getPosition())
+					.build());
+		});
+		return employeeEvaluationDtoList;
+	}
 
 }
