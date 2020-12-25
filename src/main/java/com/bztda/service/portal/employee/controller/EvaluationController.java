@@ -28,51 +28,49 @@ import java.util.List;
 @RequestMapping("/evaluation")
 public class EvaluationController {
 
-    @Autowired
-    private final DepartmentRepository departmentRepository;
+	@Autowired
+	private final DepartmentRepository departmentRepository;
 
-    @Autowired
-    private final EmployeeRepository employeeRepository;
+	@Autowired
+	private final EmployeeRepository employeeRepository;
 
-    @Autowired
-    private final EmployeeService employeeService;
+	@Autowired
+	private final EmployeeService employeeService;
 
-    @Autowired
-    private final OverallCriteriaRepository overallCriteriaRepository;
+	@Autowired
+	private final OverallCriteriaRepository overallCriteriaRepository;
 
-    @Autowired
-    private final CriteriaRepository criteriaRepository;
+	@Autowired
+	private final CriteriaRepository criteriaRepository;
 
-    @Autowired
-    private final StaffEvaluateRepository staffEvaluateRepository;
+	@Autowired
+	private final StaffEvaluateRepository staffEvaluateRepository;
 
-    @Autowired
-    private final EvaluationRepository evaluationRepository;
+	@Autowired
+	private final EvaluationRepository evaluationRepository;
 
-    @GetMapping("/department")
-    public List<Department> getDepartments() {
-        return departmentRepository.findAll();
-    }
+	@GetMapping("/department")
+	public List<Department> getDepartments() {
+		return departmentRepository.findAll();
+	}
 
-    @GetMapping("/overallcriteria")
-    public List<OverallCriteria> getOverallCriteria() {
-        return overallCriteriaRepository.findAll();
-    }
+	@GetMapping("/overallcriteria")
+	public List<OverallCriteria> getOverallCriteria() {
+		return overallCriteriaRepository.findAll();
+	}
 
-    @GetMapping("/criteria")
-    public List<Criteria> getOverallCriteriaCriteria() {
-        return criteriaRepository.findAll();
-    }
+	@GetMapping("/criteria")
+	public List<Criteria> getOverallCriteriaCriteria() {
+		return criteriaRepository.findAll();
+	}
 
-    @PostMapping("/criteria")
-    public void getEvaluation() {
+	@PostMapping("/criteria")
+	public void getEvaluation() {
+	}
 
-    }
-
-
-    @GetMapping("/department/{department}")
-    public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
-        List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
-        return employeeService.editEmployee(employeeByDepartment);
-    }
+	@GetMapping("/department/{department}")
+	public List<EmployeeEvaluationDto> getEmployee(@PathVariable Department department) {
+		List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department.getDepartment());
+		return employeeService.editEmployee(employeeByDepartment);
+	}
 }
