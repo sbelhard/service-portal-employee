@@ -16,6 +16,5 @@ public class StaffEvaluateDto {
 
 	private Long valuingEmployeeId;
 	private Long evaluateEmployeeId;
-	/*private LocalDate dateEvaluation;*/
 
 }
