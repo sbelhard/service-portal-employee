@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import javax.naming.ldap.PagedResultsControl;
 
 
 @RestController
@@ -35,57 +34,57 @@ import javax.naming.ldap.PagedResultsControl;
 @RequestMapping("/evaluation")
 public class EvaluationController {
 
-	@Autowired
-	private final DepartmentRepository departmentRepository;
+    @Autowired
+    private final DepartmentRepository departmentRepository;
 
-	@Autowired
-	private final EmployeeRepository employeeRepository;
+    @Autowired
+    private final EmployeeRepository employeeRepository;
 
-	@Autowired
-	private final EmployeeService employeeService;
+    @Autowired
+    private final EmployeeService employeeService;
 
-	@Autowired
-	private final OverallCriteriaRepository overallCriteriaRepository;
+    @Autowired
+    private final OverallCriteriaRepository overallCriteriaRepository;
 
-	@Autowired
-	private final CriteriaRepository criteriaRepository;
+    @Autowired
+    private final CriteriaRepository criteriaRepository;
 
-	@Autowired
-	private final StaffEvaluateRepository staffEvaluateRepository;
+    @Autowired
+    private final StaffEvaluateRepository staffEvaluateRepository;
 
-	@Autowired
-	private final EvaluationRepository evaluationRepository;
+    @Autowired
+    private final EvaluationRepository evaluationRepository;
 
-	@Autowired
-	private final StaffEvaluateService staffEvaluateService;
+    @Autowired
+    private final StaffEvaluateService staffEvaluateService;
 
-	@GetMapping("/department")
-	public List<Department> getDepartments() {
-		return departmentRepository.findAll();
-	}
+    @GetMapping("/department")
+    public List<Department> getDepartments() {
+        return departmentRepository.findAll();
+    }
 
-	@GetMapping("/overallcriteria")
-	public List<OverallCriteria> getOverallCriteria() {
-		return overallCriteriaRepository.findAll();
-	}
+    @GetMapping("/overallcriteria")
+    public List<OverallCriteria> getOverallCriteria() {
+        return overallCriteriaRepository.findAll();
+    }
 
-	@GetMapping("/criteria")
-	public List<Criteria> getOverallCriteriaCriteria() {
-		return criteriaRepository.findAll();
-	}
+    @GetMapping("/criteria")
+    public List<Criteria> getOverallCriteriaCriteria() {
+        return criteriaRepository.findAll();
+    }
 
-	@PostMapping("/criteria")
-	public void getEvaluation() {
-	}
+    @PostMapping("/criteria")
+    public void getEvaluation() {
+    }
 
-	@GetMapping("/department/{department}")
-	public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
-		List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
-		return employeeService.editEmployee(employeeByDepartment);
-	}
+    @GetMapping("/department/{department}")
+    public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
+        List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
+        return employeeService.editEmployee(employeeByDepartment);
+    }
 
-	@PostMapping(value = "/staff-evaluation", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getStaffEvaluation(@RequestBody StaffEvaluateDto staffEvaluateDto) {
-		staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
-	}
+    @PostMapping("/staff-evaluation")
+    public void getStaffEvaluation(@RequestBody StaffEvaluateDto staffEvaluateDto) {
+        staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
+    }
 }

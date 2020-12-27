@@ -10,5 +10,4 @@ class EmployeeServicePortalApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
