@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginPage("/login")
 				.failureUrl("/login-error")
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/default-page")
 				.and()
 				.logout()
 				.deleteCookies("JSESSIONID");
@@ -45,5 +45,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected UserDetailsService userDetailsService() {
 		return super.userDetailsService();
 	}
-
 }

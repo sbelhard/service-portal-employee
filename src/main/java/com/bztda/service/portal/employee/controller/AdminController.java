@@ -1,10 +1,13 @@
 package com.bztda.service.portal.employee.controller;
 
+import com.bztda.service.portal.employee.dto.UserDetailDto;
 import com.bztda.service.portal.employee.entity.TestPost;
 import com.bztda.service.portal.employee.repository.TestPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +34,10 @@ public class AdminController {
 		testPostRepository.save(testPost);
 	}
 
-	@GetMapping("/login")
-	public RedirectView showLoginPage() {
+	@PostMapping("/login")
+	public void showLoginPage() {
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("https://regg-e4f7e.web.app/");
-		return redirectView;
 	}
 }
 
