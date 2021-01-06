@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+				.cors()
+				.and()
 				.authorizeRequests()
 				.antMatchers(PAGE_DEFAULT_EVALUATION + PAGE_DEPARTMENT, PAGE_INTERVIEW,
 						PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
