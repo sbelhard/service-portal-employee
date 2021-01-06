@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-				.allowedOrigins("https://questions-react-1.herokuapp.com/")
+				.allowedOrigins("https://questions-react-1.herokuapp.com")
 				.allowedMethods("*");
 	}
 }
