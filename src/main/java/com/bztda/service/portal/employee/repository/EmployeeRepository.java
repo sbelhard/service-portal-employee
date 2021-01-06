@@ -7,7 +7,6 @@ import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Repository
@@ -17,5 +16,7 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 
 	@NonNull
 	List<Employee> findAll();
+
+	Employee findByEmail(String email);
 
 }

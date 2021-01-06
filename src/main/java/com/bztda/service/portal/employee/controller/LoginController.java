@@ -13,8 +13,8 @@ public class LoginController {
     public void loginUserService() {
     }*/
 
-    @GetMapping("/login-error")
-    public String getLoginPageError() {
-        return "No user or bad password";
-    }
+//    @GetMapping("/login-error")
+//    public String getLoginPageError() {
+//        return "No user or bad password";
+//    }
 }

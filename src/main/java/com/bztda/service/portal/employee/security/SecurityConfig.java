@@ -1,48 +1,79 @@
 package com.bztda.service.portal.employee.security;
 
-import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
-import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
+import com.bztda.service.portal.employee.entity.Evaluation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@RequiredArgsConstructor
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
-	private static final String PAGE_HOME = "/create-default-page";
-	private static final String PAGE_INTERVIEW = "";
-	private static final String PAGE = "";
+	private final UserDetailsService userDetailsService;
 
-	private UserDetailsService userDetailsService;
+	private static final String PAGE_INTERVIEW = "/interview";
+	private static final String PAGE_DEFAULT_EVALUATION = "/evaluation";
+	private static final String PAGE_DEPARTMENT = "/department";
+	private static final String PAGE_OVERALLCRITERIA = "/overallcriteria";
+	private static final String PAGE_CRITERIA = "/criteria";
+	private static final String PAGE_STAFF_EVALUATION = "/staff-evaluation";
+	private static final String PAGE_DEFAULT = "/";
+
+	private static final String PAGE_LOGIN = "";
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/registration").not().fullyAuthenticated()
-				.antMatchers(PAGE_HOME).hasAuthority("ADMIN")
-				.antMatchers(PAGE_HOME).hasAuthority("USER")
-				.anyRequest().permitAll()
+				.antMatchers(PAGE_DEFAULT_EVALUATION + PAGE_DEPARTMENT, PAGE_INTERVIEW,
+						PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
+						PAGE_DEFAULT_EVALUATION + PAGE_CRITERIA, PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
+						PAGE_DEFAULT_EVALUATION + PAGE_STAFF_EVALUATION)
+				.hasAuthority("ADMIN")
+				.antMatchers(PAGE_DEFAULT_EVALUATION + PAGE_DEPARTMENT + PAGE_DEFAULT)
+				.hasAuthority("USER")
 				.and()
 				.formLogin()
-				.loginPage("/login")
-				.failureUrl("/login-error")
-				.defaultSuccessUrl("/default-page")
+				.defaultSuccessUrl("/")
 				.and()
 				.logout()
 				.deleteCookies("JSESSIONID");
+
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public DaoAuthenticationProvider authProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService);
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
 	}
 
 	@Override
 	protected UserDetailsService userDetailsService() {
 		return super.userDetailsService();
+	}
+
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**")
+				.allowedOrigins("https://questions-react-1.herokuapp.com/")
+				.allowedMethods("*");
 	}
 }
