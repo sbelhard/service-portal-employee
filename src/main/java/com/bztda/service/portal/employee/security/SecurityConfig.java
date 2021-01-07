@@ -44,8 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 						PAGE_DEFAULT_EVALUATION + PAGE_CRITERIA, PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
 						PAGE_DEFAULT_EVALUATION + PAGE_STAFF_EVALUATION)
 				.hasAuthority("ADMIN")
-				.antMatchers()
-				.hasAuthority("USER")
 				.and()
 				.formLogin()
 				.loginPage("/login")
