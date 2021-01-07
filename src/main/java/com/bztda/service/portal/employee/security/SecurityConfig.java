@@ -39,12 +39,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 				.and()
 				.authorizeRequests()
 				.antMatchers().permitAll()
-				.antMatchers(PAGE_DEFAULT_EVALUATION + PAGE_DEPARTMENT, PAGE_INTERVIEW,
+				.antMatchers(
 						PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
 						PAGE_DEFAULT_EVALUATION + PAGE_CRITERIA, PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
 						PAGE_DEFAULT_EVALUATION + PAGE_STAFF_EVALUATION)
 				.hasAuthority("ADMIN")
-				.antMatchers(PAGE_DEFAULT_EVALUATION + PAGE_DEPARTMENT + PAGE_DEFAULT)
+				.antMatchers()
 				.hasAuthority("USER")
 				.and()
 				.formLogin()
