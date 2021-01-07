@@ -38,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 				.cors()
 				.and()
 				.authorizeRequests()
+				.anyRequest()
+				.authenticated()
 				.antMatchers(PAGE_DEFAULT_EVALUATION + PAGE_DEPARTMENT, PAGE_INTERVIEW,
 						PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
 						PAGE_DEFAULT_EVALUATION + PAGE_CRITERIA, PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
