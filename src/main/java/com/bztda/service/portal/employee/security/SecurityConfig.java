@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 				.hasAuthority("USER")
 				.and()
 				.formLogin()
+				.loginPage("/login")
 				.defaultSuccessUrl("/")
 				.and()
 				.logout()
