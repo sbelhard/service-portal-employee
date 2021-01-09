@@ -1,5 +1,6 @@
 package com.bztda.service.portal.employee.controller;
 
+import com.bztda.service.portal.employee.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,8 +16,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class LoginController {
 
 	@PostMapping("/login")
-	public void loginUserService() {
-		System.out.println();
+	public void loginUserService(@RequestBody UserDto user) {
+		System.out.println(user.toString());
 	}
 
 //    @GetMapping("/login-error")
@@ -27,7 +28,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public RedirectView showLoginPage() {
 		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl("https://questions-react-1.herokuapp.com/reg");
+		redirectView.setUrl("http://localhost:3000/reg");
 		return redirectView;
 	}
 }
