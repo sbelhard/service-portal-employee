@@ -83,7 +83,7 @@ public class EvaluationController {
         return employeeService.editEmployee(employeeByDepartment);
     }
 
-    @PostMapping(name = "/staff-evaluation")
+    @PostMapping(name = "/staff-evaluation",consumes = MediaType.APPLICATION_JSON_VALUE)
     public void getStaffEvaluation(@RequestBody StaffEvaluateDto staffEvaluateDto) {
         staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
     }
