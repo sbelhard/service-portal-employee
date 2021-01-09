@@ -17,16 +17,4 @@ public class LoginController {
 	public void loginUserService() {
 		System.out.println();
 	}
-
-//    @GetMapping("/login-error")
-//    public String getLoginPageError() {
-//        return "No user or bad password";
-//    }
-
-	@GetMapping("/login")
-	public RedirectView showLoginPage() {
-		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl("http://localhost:3000/reg");
-		return redirectView;
-	}
 }
