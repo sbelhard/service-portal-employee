@@ -27,7 +27,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public RedirectView showLoginPage() {
 		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl("https://regg-e4f7e.web.app/");
+		redirectView.setUrl("https://questions-react-1.herokuapp.com/reg");
 		return redirectView;
 	}
 }
