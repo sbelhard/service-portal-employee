@@ -35,22 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				.cors()
-				.and()
-				.authorizeRequests()
-				.antMatchers().permitAll()
-				.antMatchers(
-						PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA,
-						PAGE_DEFAULT_EVALUATION + PAGE_CRITERIA, PAGE_DEFAULT_EVALUATION + PAGE_OVERALLCRITERIA)
-				.hasAuthority("ADMIN")
-				.and()
-				.formLogin()
-				.loginPage("/login")
-				.defaultSuccessUrl("/")
-				.and()
-				.logout()
-				.deleteCookies("JSESSIONID");
-
+				.cors();
 	}
 
 	@Bean
