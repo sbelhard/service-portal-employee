@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -82,7 +83,7 @@ public class EvaluationController {
 		return employeeService.editEmployee(employeeByDepartment);
 	}
 
-	@PostMapping(name = "/staff-evaluation", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/staff-evaluation", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void getStaffEvaluation(@RequestBody StaffEvaluateDto staffEvaluateDto) {
 		staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
 	}

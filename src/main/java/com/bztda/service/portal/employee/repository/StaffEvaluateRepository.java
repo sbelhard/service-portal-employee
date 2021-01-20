@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StaffEvaluateRepository extends PagingAndSortingRepository<StaffEvaluate, Long> {
 
-    StaffEvaluate save(StaffEvaluate staffEvaluation);
-
 }
