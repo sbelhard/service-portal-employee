@@ -22,7 +22,7 @@ public class EmployeeService  {
 			employeeEvaluationDtoList.add(EmployeeEvaluationDto.builder()
 					.id(employee.getId())
 					.lastName(employee.getLastName())
-					.firstName(employee.getFirst_name())
+					.firstName(employee.getFirstName())
 					.patronymic(employee.getPatronymic())
 					.position(employee.getPosition())
 					.build());

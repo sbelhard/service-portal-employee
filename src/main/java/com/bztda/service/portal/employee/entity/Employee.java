@@ -38,7 +38,7 @@ public class Employee extends BaseEntity<Long> {
     private String lastName;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "patronymic")
     private String patronymic;
