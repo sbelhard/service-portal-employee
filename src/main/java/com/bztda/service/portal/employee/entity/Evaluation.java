@@ -25,7 +25,7 @@ import java.time.LocalDate;
 public class Evaluation extends BaseEntity<Long> {
 
 	@Column(name = "value")
-	private int value;
+	private Long value;
 
 	@Column(name = "criteria_id")
 	private Long criteriaId;

@@ -39,19 +39,6 @@ public class AnswerService {
 		return null;
 	}
 
-	public void getAnswerDtoAnswerAndSaveAnswer(QuestionDto questionDto, Question question) {
-		Answer answer;
-		int qualityAnswersQuestion = 3;
-		for (int i = 0; i < qualityAnswersQuestion; i++) {
-			answer = Answer.builder()
-					.answerText(questionDto.getListAnswerDto().get(i).getAnswer())
-					.result(questionDto.getListAnswerDto().get(i).getResult())
-					.question(question)
-					.build();
-			answerRepository.save(answer);
-		}
-	}
-
 	public List<AnswerDto> editAnswerAnswerDto(List<Question> questions, int numberQuestion) {
 		List<AnswerDto> listAnswerDto = new ArrayList<>();
 		List<Answer> answersQuestion = answerRepository.findAllByQuestionId(questions.get(numberQuestion).getId());
@@ -66,8 +53,13 @@ public class AnswerService {
 		return listAnswerDto;
 	}
 
-	public List<AnswerDto> shuffleAnswers(List<AnswerDto> answerDtoList) {
-		Collections.shuffle(answerDtoList);
-		return answerDtoList;
+	public void editAnswerDtoAnswerAndSave(QuestionDto questionDto, Question question) {
+		for (AnswerDto answerDto : questionDto.getListAnswerDto()) {
+			answerRepository.save(Answer.builder()
+					.answerText(answerDto.getAnswer())
+					.result(answerDto.getResult())
+					.question(question)
+					.build());
+		}
 	}
 }

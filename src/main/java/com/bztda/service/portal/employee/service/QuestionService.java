@@ -1,6 +1,8 @@
 package com.bztda.service.portal.employee.service;
 
+import com.bztda.service.portal.employee.dto.AnswerDto;
 import com.bztda.service.portal.employee.dto.QuestionDto;
+import com.bztda.service.portal.employee.entity.Answer;
 import com.bztda.service.portal.employee.entity.Question;
 import com.bztda.service.portal.employee.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -82,4 +85,14 @@ public class QuestionService {
 				.listAnswerDto(answerService.editAnswerAnswerDto(questions, numberQuestion))
 				.build();
 	}
+
+	public void editQuestionDtoQuestionAndSave(QuestionDto questionDto) {
+		questionRepository.save(Question.builder()
+				.question(questionDto.getQuestion())
+				.build());
+		Question question = questionRepository.findByQuestion(questionDto.getQuestion());
+		answerService.editAnswerDtoAnswerAndSave(questionDto, question);
+
+	}
+
 }
