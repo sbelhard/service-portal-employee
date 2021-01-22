@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +29,15 @@ import java.util.List;
 @Table(name = "departments", schema = "portal_storage")
 public class Department extends BaseEntity<Long> {
 
-    @Column(name = "department")
-    private String department;
+	@Column(name = "department")
+	private String department;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "department")
 	private List<Employee> employees = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "department")
+	private List<DataEmployee1C> dataEmployee1C = new ArrayList<>();
+
 }

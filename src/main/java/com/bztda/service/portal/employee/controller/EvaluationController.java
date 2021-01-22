@@ -78,11 +78,6 @@ public class EvaluationController {
 		return criteriaRepository.findAll();
 	}
 
-	@PostMapping(value = "/evaluationEmployee", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getEvaluation(@RequestBody EvaluationDto evaluationDto) {
-		evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
-	}
-
 	@GetMapping("/department/{department}")
 	public List<EmployeeEvaluationDto> getEmployee(@PathVariable String department) {
 		List<Employee> employeeByDepartment = employeeRepository.findAllByDepartmentDepartment(department);
@@ -94,6 +89,11 @@ public class EvaluationController {
 		StaffEvaluate staffEvaluate = staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
 		Optional<StaffEvaluate> idStaffEvaluate = staffEvaluateRepository.findById(staffEvaluate.getId());
 		return idStaffEvaluate.get().getId();
+	}
+
+	@PostMapping(value = "/evaluationEmployee", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void getEvaluation(@RequestBody EvaluationDto evaluationDto) {
+		evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
 	}
 
 }

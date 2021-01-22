@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserController {
+public class InterviewController {
 
     @Autowired
     private final QuestionService questionService;
