@@ -47,9 +47,18 @@ public class EmployeeController {
 	}
 
 	@PostMapping(value = "/registry", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void registryEmployee(@RequestBody EmployeeDto employeeDto) {
+	public EmployeeLoginDto registryEmployee(@RequestBody EmployeeDto employeeDto) {
 		Employee employee = employeeRepository.save(employeeService.editEmployeeDtoEmployee(employeeDto));
 		dataEmployee1CRepository.update(true);
+		EmployeeLoginDto employeeLoginDto = EmployeeLoginDto.builder()
+				.id(employee.getId())
+				.firstName(employee.getFirstName())
+				.lastName(employee.getLastName())
+				.patronymic(employee.getPatronymic())
+				.position(employee.getPosition())
+				.role(employee.getRole().getRole())
+				.build();
+		return employeeLoginDto;
 	}
 
 }

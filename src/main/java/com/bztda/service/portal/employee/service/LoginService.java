@@ -16,13 +16,13 @@ public class LoginService {
 	private EmployeeRepository employeeRepository;
 
 	public boolean getLogin(LoginDto loginDto) {
-		Employee employee = employeeRepository.findByEmail(loginDto.getEmail());
+		Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
 		return employee != null;
 	}
 
 	public EmployeeLoginDto getEmployeeLoginDto(LoginDto loginDto) {
 		if (getLogin(loginDto)) {
-			Employee employee = employeeRepository.findByEmail(loginDto.getEmail());
+			Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
 			EmployeeLoginDto employeeLoginDto = EmployeeLoginDto.builder()
 					.id(employee.getId())
 					.firstName(employee.getFirstName())
