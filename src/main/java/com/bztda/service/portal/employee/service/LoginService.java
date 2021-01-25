@@ -14,27 +14,22 @@ public class LoginService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-	public boolean getLogin(LoginDto loginDto) {
-		Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
-		return employee != null;
-	}
 
 	public EmployeeLoginDto1Cdto getEmployeeLoginDto(LoginDto loginDto) {
 		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
-		if (getLogin(loginDto)) {
-			Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
-			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
-					.id(employee.getId())
-					.firstName(employee.getFirstName())
-					.lastName(employee.getLastName())
-					.patronymic(employee.getPatronymic())
-					.position(employee.getPosition())
-					.role(employee.getRole().getRole())
-					.build();
-			return employeeLoginDto1Cdto;
-		}
-		return null;
+
+		Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
+		employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
+				.id(employee.getId())
+				.firstName(employee.getFirstName())
+				.lastName(employee.getLastName())
+				.patronymic(employee.getPatronymic())
+				.position(employee.getPosition())
+				.role(employee.getRole().getRole())
+				.build();
+		return employeeLoginDto1Cdto;
 	}
 }
+
 
 
