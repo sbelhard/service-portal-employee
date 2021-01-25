@@ -14,20 +14,22 @@ public class LoginService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-
 	public EmployeeLoginDto1Cdto getEmployeeLoginDto(LoginDto loginDto) {
 		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
-
-		Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
-		employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
-				.id(employee.getId())
-				.firstName(employee.getFirstName())
-				.lastName(employee.getLastName())
-				.patronymic(employee.getPatronymic())
-				.position(employee.getPosition())
-				.role(employee.getRole().getRole())
-				.build();
-		return employeeLoginDto1Cdto;
+		try {
+			Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
+			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
+					.id(employee.getId())
+					.firstName(employee.getFirstName())
+					.lastName(employee.getLastName())
+					.patronymic(employee.getPatronymic())
+					.position(employee.getPosition())
+					.role(employee.getRole().getRole())
+					.build();
+			return employeeLoginDto1Cdto;
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 }
 

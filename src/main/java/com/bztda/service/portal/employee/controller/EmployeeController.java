@@ -35,7 +35,8 @@ public class EmployeeController {
 
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	public EmployeeLoginDto1Cdto loginUserService(@RequestBody LoginDto loginDto) {
-		EmployeeLoginDto1Cdto employeeLoginDto1Cdto = loginService.getEmployeeLoginDto(loginDto);
+		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
+		employeeLoginDto1Cdto = loginService.getEmployeeLoginDto(loginDto);
 		if (employeeLoginDto1Cdto == null) {
 			DataEmployee1C dataEmployee1C = dataEmployee1CRepository.findByNumberPass(loginDto.getNumberPass());
 			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
@@ -53,12 +54,6 @@ public class EmployeeController {
 			return employeeLoginDto1Cdto;
 		}
 		return employeeLoginDto1Cdto;
-	}
-
-	@PostMapping(value = "/get-data-employee", produces = MediaType.APPLICATION_JSON_VALUE)
-	public DataEmployee1C getData1CForRegistry(@RequestBody String numberPass) {
-		DataEmployee1C employeeData1C = dataEmployee1CRepository.findByNumberPass(numberPass);
-		return employeeData1C;
 	}
 
 	@PostMapping(value = "/registry", produces = MediaType.APPLICATION_JSON_VALUE)
