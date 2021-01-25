@@ -1,12 +1,11 @@
 package com.bztda.service.portal.employee.controller;
 
 import com.bztda.service.portal.employee.dto.EmployeeDto;
-import com.bztda.service.portal.employee.dto.EmployeeLoginDto;
+import com.bztda.service.portal.employee.dto.EmployeeLoginDto1Cdto;
 import com.bztda.service.portal.employee.dto.LoginDto;
 import com.bztda.service.portal.employee.entity.DataEmployee1C;
 import com.bztda.service.portal.employee.entity.Employee;
 import com.bztda.service.portal.employee.repository.DataEmployee1CRepository;
-import com.bztda.service.portal.employee.repository.EmployeeHobbiesRepository;
 import com.bztda.service.portal.employee.repository.EmployeeRepository;
 import com.bztda.service.portal.employee.service.EmployeeService;
 import com.bztda.service.portal.employee.service.LoginService;
@@ -35,9 +34,25 @@ public class EmployeeController {
 	private final DataEmployee1CRepository dataEmployee1CRepository;
 
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-	public EmployeeLoginDto loginUserService(@RequestBody LoginDto loginDto) {
-		EmployeeLoginDto employeeLoginDto = loginService.getEmployeeLoginDto(loginDto);
-		return employeeLoginDto;
+	public EmployeeLoginDto1Cdto loginUserService(@RequestBody LoginDto loginDto) {
+		EmployeeLoginDto1Cdto employeeLoginDto1Cdto = loginService.getEmployeeLoginDto(loginDto);
+		if (employeeLoginDto1Cdto == null) {
+			DataEmployee1C dataEmployee1C = dataEmployee1CRepository.findByNumberPass(loginDto.getNumberPass());
+			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
+					.lastName(dataEmployee1C.getLastName())
+					.firstName(dataEmployee1C.getFirstName())
+					.patronymic(dataEmployee1C.getPatronymic())
+					.birthDay(dataEmployee1C.getBirthDay())
+					.dateEndContract(dataEmployee1C.getDateEndContract())
+					.dateStartContract(dataEmployee1C.getDateStartContract())
+					.department(dataEmployee1C.getDepartment())
+					.numberPass(loginDto.getNumberPass())
+					.position(dataEmployee1C.getPosition())
+					.isEmployee(dataEmployee1C.isEmployee())
+					.build();
+			return employeeLoginDto1Cdto;
+		}
+		return employeeLoginDto1Cdto;
 	}
 
 	@PostMapping(value = "/get-data-employee", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,10 +62,10 @@ public class EmployeeController {
 	}
 
 	@PostMapping(value = "/registry", produces = MediaType.APPLICATION_JSON_VALUE)
-	public EmployeeLoginDto registryEmployee(@RequestBody EmployeeDto employeeDto) {
+	public EmployeeLoginDto1Cdto registryEmployee(@RequestBody EmployeeDto employeeDto) {
 		Employee employee = employeeRepository.save(employeeService.editEmployeeDtoEmployee(employeeDto));
 		dataEmployee1CRepository.update(true);
-		EmployeeLoginDto employeeLoginDto = EmployeeLoginDto.builder()
+		EmployeeLoginDto1Cdto employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
 				.id(employee.getId())
 				.firstName(employee.getFirstName())
 				.lastName(employee.getLastName())
@@ -58,7 +73,7 @@ public class EmployeeController {
 				.position(employee.getPosition())
 				.role(employee.getRole().getRole())
 				.build();
-		return employeeLoginDto;
+		return employeeLoginDto1Cdto;
 	}
 
 }

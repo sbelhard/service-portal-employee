@@ -2,10 +2,14 @@ package com.bztda.service.portal.employee.service;
 
 import com.bztda.service.portal.employee.dto.EmployeeDto;
 import com.bztda.service.portal.employee.dto.EmployeeEvaluationDto;
+import com.bztda.service.portal.employee.dto.EmployeeLoginDto1Cdto;
+import com.bztda.service.portal.employee.dto.LoginDto;
+import com.bztda.service.portal.employee.entity.DataEmployee1C;
 import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Education;
 import com.bztda.service.portal.employee.entity.Employee;
 import com.bztda.service.portal.employee.entity.Role;
+import com.bztda.service.portal.employee.repository.DataEmployee1CRepository;
 import com.bztda.service.portal.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +23,9 @@ public class EmployeeService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+
+	@Autowired
+	private DataEmployee1CRepository dataEmployee1CRepository;
 
 	public List<EmployeeEvaluationDto> editEmployee(List<Employee> employees) {
 		List<EmployeeEvaluationDto> employeeEvaluationDtoList = new ArrayList<>();
@@ -35,7 +42,7 @@ public class EmployeeService {
 	}
 
 	public Employee editEmployeeDtoEmployee(EmployeeDto employeeDto) {
-		 return Employee.builder()
+		return Employee.builder()
 				.lastName(employeeDto.getLastName())
 				.firstName(employeeDto.getFirstName())
 				.patronymic(employeeDto.getPatronymic())
