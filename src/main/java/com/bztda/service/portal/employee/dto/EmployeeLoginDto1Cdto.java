@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-
 
 @Data
 @AllArgsConstructor

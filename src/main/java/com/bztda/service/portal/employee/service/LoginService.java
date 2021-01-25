@@ -20,9 +20,10 @@ public class LoginService {
 	}
 
 	public EmployeeLoginDto1Cdto getEmployeeLoginDto(LoginDto loginDto) {
+		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
 		if (getLogin(loginDto)) {
 			Employee employee = employeeRepository.findByNumberPass(loginDto.getNumberPass());
-			EmployeeLoginDto1Cdto employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
+			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
 					.id(employee.getId())
 					.firstName(employee.getFirstName())
 					.lastName(employee.getLastName())
