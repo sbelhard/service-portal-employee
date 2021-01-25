@@ -21,4 +21,6 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 
 	Employee findByEmailAndPassword(String email, String password);
 
+	Employee findByNumberPass(String numberpass);
+
 }

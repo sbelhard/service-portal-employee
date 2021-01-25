@@ -1,4 +1,3 @@
-CREATE DATABASE portal_repository;
 CREATE SCHEMA portal_storage;
 
 SET SEARCH_PATH = portal_storage;
@@ -30,9 +29,9 @@ CREATE TABLE hobbies
     hobbies VARCHAR(128) UNIQUE NOT NULL
 );
 
-CREATE TABLE departments
+CREATE TABLE portal_storage.departments_1c
 (
-    id          BIGSERIAL PRIMARY KEY,
+    id         BIGSERIAL PRIMARY KEY,
     department VARCHAR(256) UNIQUE NOT NULL
 );
 
@@ -102,7 +101,7 @@ CREATE TABLE employee_hobbies
 (
     id          BIGSERIAL PRIMARY KEY,
     employee_id BIGINT NOT NULL REFERENCES employee (id),
-    hobbies_id  BIGINT  REFERENCES hobbies (id)
+    hobbies_id  BIGINT REFERENCES hobbies (id)
 );
 
 CREATE TABLE type_inquiry
@@ -119,7 +118,25 @@ CREATE TABLE inquiry
     type_inquiry_id       BIGINT       NOT NULL REFERENCES type_inquiry (id),
     employee_id           BIGINT       NOT NULL REFERENCES employee (id)
 );
+CREATE TABLE portal_storage.depart
+(
+    id         BIGSERIAL PRIMARY KEY,
+    department VARCHAR(256) UNIQUE NOT NULL
+);
 
+CREATE TABLE portal_storage.employee_data1c
+(
+    id                  BIGSERIAL PRIMARY KEY,
+    last_name           VARCHAR(256) NOT NULL,
+    first_name          VARCHAR(256) NOT NULL,
+    patronymic          VARCHAR(256) NOT NULL,
+    position            VARCHAR(256) NOT NULL,
+    department          VARCHAR(256) NOT NULL,
+    birth_day           DATE         NOT NULL,
+    number_pass         VARCHAR(256) NOT NULL UNIQUE,
+    date_start_contract DATE         NOT NULL,
+    date_end_contract   DATE         NOT NULL
+);
 
 DROP TABLE questions;
 DROP TABLE answers;
@@ -335,6 +352,31 @@ VALUES (3, '2020-12-03', 5, 1);
 INSERT INTO staff_evaluate
 VALUES (4, '2020-11-12', 5);
 
+INSERT INTO portal_storage.employee_data1c
+VALUES (1, 'Иванов', 'Иван', 'Иванович', 'Директор', 'Управление предприятием', '1970-12-23', '000001',
+        '2000-12-23', '2025-12-22');
 
+INSERT INTO portal_storage.employee_data1c
+VALUES (2, 'Петров', 'Петр', 'Петрович', 'Заместитель директор', 'Управление предприятием', '1974-09-11', '000002',
+        '2008-01-20', '2025-01-19');
 
+INSERT INTO portal_storage.employee_data1c
+VALUES (4, 'Cидоров', 'Артур', 'Николаевич', 'Конструктор', 'Управление предприятием', '1982-10-11', '000003',
+        '2012-10-15', '2022-10-14');
+
+INSERT INTO portal_storage.employee_data1c
+VALUES (5, 'Крот', 'Матвей', 'Николаевич', 'Конструктор', 'Конструкторский отдел', '1985-10-11', '000004',
+        '2020-10-15', '2021-10-14');
+
+INSERT INTO portal_storage.employee_data1c
+VALUES (6, 'Иванова', 'Мария', 'Васильевна', 'Главный бухгалтер', 'Отдел бухгалтерского учета', '1990-05-13', '000005',
+        '2015-01-05', '2025-01-04');
+
+INSERT INTO portal_storage.employee_data1c
+VALUES (7, 'Гормаза', 'Алексей', 'Викторович', 'Рабочий цеха', 'Отдел разработки деталей', '1973-03-17', '000007',
+        '2013-04-05', '2022-04-04');
+
+INSERT INTO portal_storage.employee_data1c
+VALUES (8, 'Клин', 'Валерия', 'Викторовна', 'Руководитель отдела кадров', 'Отдел кадров', '1989-03-17', '000008',
+        '2018-03-03', '2021-03-02');
 

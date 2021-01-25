@@ -36,8 +36,4 @@ public class Department extends BaseEntity<Long> {
 	@OneToMany(mappedBy = "department")
 	private List<Employee> employees = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "department")
-	private List<DataEmployee1C> dataEmployee1C = new ArrayList<>();
-
 }

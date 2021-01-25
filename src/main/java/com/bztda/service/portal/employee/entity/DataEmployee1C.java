@@ -53,8 +53,10 @@ public class DataEmployee1C extends BaseEntity<Long> {
 	@Column(name = "date_start_contract")
 	private LocalDate dateStartContract;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "department_id")
-	private Department department;
+	@JoinColumn(name = "department")
+	private String department;
+
+	@JoinColumn(name = "is_employee")
+	private boolean isEmployee;
 
 }
