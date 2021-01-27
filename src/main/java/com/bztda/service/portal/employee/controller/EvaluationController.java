@@ -6,6 +6,7 @@ import com.bztda.service.portal.employee.dto.StaffEvaluateDto;
 import com.bztda.service.portal.employee.entity.Criteria;
 import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Employee;
+import com.bztda.service.portal.employee.entity.Evaluation;
 import com.bztda.service.portal.employee.entity.OverallCriteria;
 import com.bztda.service.portal.employee.entity.StaffEvaluate;
 import com.bztda.service.portal.employee.repository.CriteriaRepository;
@@ -13,6 +14,7 @@ import com.bztda.service.portal.employee.repository.DepartmentRepository;
 import com.bztda.service.portal.employee.repository.EmployeeRepository;
 import com.bztda.service.portal.employee.repository.EvaluationRepository;
 import com.bztda.service.portal.employee.repository.OverallCriteriaRepository;
+import com.bztda.service.portal.employee.repository.RatingRepository;
 import com.bztda.service.portal.employee.repository.StaffEvaluateRepository;
 import com.bztda.service.portal.employee.service.EmployeeService;
 import com.bztda.service.portal.employee.service.EvaluationService;
@@ -63,6 +65,9 @@ public class EvaluationController {
 	@Autowired
 	private final StaffEvaluateService staffEvaluateService;
 
+	@Autowired
+	private final RatingRepository ratingRepository;
+
 	@GetMapping("/department")
 	public List<Department> getDepartments() {
 		return departmentRepository.findAll();
@@ -91,9 +96,15 @@ public class EvaluationController {
 		return idStaffEvaluate.get().getId();
 	}
 
-	@PostMapping(value = "/evaluationEmployee", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/evaluation-employee", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void getEvaluation(@RequestBody EvaluationDto evaluationDto) {
-		evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
+		Evaluation evaluation = evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
+		Optional<StaffEvaluate> staffEvaluate = staffEvaluateRepository.findById(evaluation.getStaffEvaluateId());
+		Long evaluateEmployeeId = staffEvaluate.get().getEmployeeEvaluate().getId();
+		if (evaluateEmployeeId != null) {
+			ratingRepository.findByEmployeeId(evaluateEmployeeId);
+		}
+
 	}
 
 }

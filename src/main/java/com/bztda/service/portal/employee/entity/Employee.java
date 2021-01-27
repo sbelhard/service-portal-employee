@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -96,4 +97,7 @@ public class Employee extends BaseEntity<Long> {
 
     @OneToMany(mappedBy = "employee")
     private List<Inquiry> inquiries = new ArrayList<>();
+
+    @OneToOne(mappedBy = "employee")
+    private Rating rating;
 }
