@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RatingRepository extends PagingAndSortingRepository<Rating, Long> {
 
-	@Modifying
+	/*@Modifying
 	@Query("select Rating  FROM Rating r where r.employee.id=?1")
-	Rating findByEmployeeId(Long id);
+	Rating findByEmployeeId(Long id);*/
 
 	@Modifying
 	@Query("update Rating r set r.rating=?1")

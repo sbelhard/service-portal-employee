@@ -97,7 +97,7 @@ public class EvaluationController {
 		return idStaffEvaluate.get().getId();
 	}
 
-	@PostMapping(value = "/evaluation-employee", produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "/evaluation-employee", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void getEvaluation(@RequestBody EvaluationDto evaluationDto) {
 		Evaluation evaluation = evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
 		Optional<StaffEvaluate> staffEvaluate = staffEvaluateRepository.findById(evaluation.getStaffEvaluateId());
@@ -107,6 +107,6 @@ public class EvaluationController {
 			double rating = (ratingEmployeeId.getRating() + evaluationDto.getValue()) / 2;
 			ratingRepository.update((long) rating);
 		}
-	}
+	}*/
 
 }
