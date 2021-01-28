@@ -14,6 +14,7 @@ import com.bztda.service.portal.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,15 +54,15 @@ public class EmployeeService {
 				.department(Department.builder()
 						.department(employeeDto.getDepartment())
 						.build())
-				.birthDay(employeeDto.getBirthDay())
+				.birthDay(LocalDate.parse(employeeDto.getBirthDay()))
 				.numberPass(employeeDto.getNumberPass())
 				.telephone(employeeDto.getTelephone())
 				.email(employeeDto.getEmail())
 				.education(Education.builder()
 						.education(employeeDto.getEducation())
 						.build())
-				.dateEndContract(employeeDto.getDateEndContract())
-				.dateStartContract(employeeDto.getDateStartContract())
+				.dateEndContract(LocalDate.parse(employeeDto.getDateEndContract()))
+				.dateStartContract(LocalDate.parse(employeeDto.getDateStartContract()))
 				.role(Role.builder()
 						.role("User")
 						.build())

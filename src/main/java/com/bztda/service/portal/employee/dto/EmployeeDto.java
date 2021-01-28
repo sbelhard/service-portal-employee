@@ -26,16 +26,16 @@ public class EmployeeDto {
 	private String firstName;
 	private String patronymic;
 	private String position;
-	private LocalDate birthDay;
+	private String birthDay;
 	private String numberPass;
 	private String telephone;
 	private String email;
-	private LocalDate dateEndContract;
-	private LocalDate dateStartContract;
+	private String dateEndContract;
+	private String dateStartContract;
 	private String password;
 	private String department;
 	private String education;
-	private String [] hobbies;
+	private String[] hobbies;
 
 	private List<Inquiry> inquiries = new ArrayList<>();
 
