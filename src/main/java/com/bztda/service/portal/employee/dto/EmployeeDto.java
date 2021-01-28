@@ -15,15 +15,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 
 @Data
 @NoArgsConstructor
@@ -39,13 +30,12 @@ public class EmployeeDto {
 	private String numberPass;
 	private String telephone;
 	private String email;
-	private boolean training;
 	private LocalDate dateEndContract;
 	private LocalDate dateStartContract;
 	private String password;
 	private String department;
 	private String education;
-	private List<String> hobbies;
+	private String [] hobbies;
 
 	private List<Inquiry> inquiries = new ArrayList<>();
 

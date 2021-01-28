@@ -8,6 +8,7 @@ import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Employee;
 import com.bztda.service.portal.employee.entity.Evaluation;
 import com.bztda.service.portal.employee.entity.OverallCriteria;
+import com.bztda.service.portal.employee.entity.Rating;
 import com.bztda.service.portal.employee.entity.StaffEvaluate;
 import com.bztda.service.portal.employee.repository.CriteriaRepository;
 import com.bztda.service.portal.employee.repository.DepartmentRepository;
@@ -102,9 +103,10 @@ public class EvaluationController {
 		Optional<StaffEvaluate> staffEvaluate = staffEvaluateRepository.findById(evaluation.getStaffEvaluateId());
 		Long evaluateEmployeeId = staffEvaluate.get().getEmployeeEvaluate().getId();
 		if (evaluateEmployeeId != null) {
-			ratingRepository.findByEmployeeId(evaluateEmployeeId);
+			Rating ratingEmployeeId = ratingRepository.findByEmployeeId(evaluateEmployeeId);
+			double rating = (ratingEmployeeId.getRating() + evaluationDto.getValue()) / 2;
+			ratingRepository.update((long) rating);
 		}
-
 	}
 
 }

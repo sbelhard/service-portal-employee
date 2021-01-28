@@ -25,6 +25,9 @@ public class EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	@Autowired
+	private HobbiesService hobbiesService;
+
+	@Autowired
 	private DataEmployee1CRepository dataEmployee1CRepository;
 
 	public List<EmployeeEvaluationDto> editEmployee(List<Employee> employees) {
@@ -57,13 +60,13 @@ public class EmployeeService {
 				.education(Education.builder()
 						.education(employeeDto.getEducation())
 						.build())
-				.training(employeeDto.isTraining())
 				.dateEndContract(employeeDto.getDateEndContract())
 				.dateStartContract(employeeDto.getDateStartContract())
 				.role(Role.builder()
 						.role("User")
 						.build())
 				.password(employeeDto.getPassword())
+				.hobbies(hobbiesService.editMassHobbiesList(employeeDto.getHobbies()))
 				.build();
 	}
 
