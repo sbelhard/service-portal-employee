@@ -16,6 +16,23 @@ import java.util.List;
 @Builder
 public class EmployeeDto {
 
+	public EmployeeDto(String lastName, String firstName, String patronymic, String position, String birthDay, String numberPass, String telephone, String email, String dateEndContract, String dateStartContract, String password, String department, String education, String hobby) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.patronymic = patronymic;
+		this.position = position;
+		this.birthDay = birthDay;
+		this.numberPass = numberPass;
+		this.telephone = telephone;
+		this.email = email;
+		this.dateEndContract = dateEndContract;
+		this.dateStartContract = dateStartContract;
+		this.password = password;
+		this.department = department;
+		this.education = education;
+		this.hobby = hobby;
+	}
+
 	private String lastName;
 	private String firstName;
 	private String patronymic;
