@@ -11,7 +11,9 @@ import java.util.List;
 @Repository
 public interface DepartmentRepository extends PagingAndSortingRepository<Department, Long> {
 
-    @NonNull
-    List<Department> findAll();
+	@NonNull
+	List<Department> findAll();
+
+	Department findByDepartment(String department);
 
 }

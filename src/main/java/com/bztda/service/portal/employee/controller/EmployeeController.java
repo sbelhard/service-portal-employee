@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
+
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -57,17 +59,23 @@ public class EmployeeController {
 	}
 
 	@PostMapping(value = "/registry", produces = MediaType.APPLICATION_JSON_VALUE)
-	public EmployeeLoginDto1Cdto registryEmployee(@RequestBody EmployeeDto employeeDto) {
-		Employee employee = employeeRepository.save(employeeService.editEmployeeDtoEmployee(employeeDto));
-		EmployeeLoginDto1Cdto employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
-				.id(employee.getId())
-				.firstName(employee.getFirstName())
-				.lastName(employee.getLastName())
-				.patronymic(employee.getPatronymic())
-				.position(employee.getPosition())
-				.role(employee.getRole().getRole())
-				.build();
-		return employeeLoginDto1Cdto;
+	public EmployeeLoginDto1Cdto registryEmployee(@RequestBody EmployeeDto employeeDto) throws Throwable {
+		try {
+			Employee employee = employeeRepository.save(employeeService.editEmployeeDtoEmployee(employeeDto));
+			dataEmployee1CRepository.update(true, employeeDto.getNumberPass());
+			EmployeeLoginDto1Cdto employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
+					.id(employee.getId())
+					.firstName(employee.getFirstName())
+					.lastName(employee.getLastName())
+					.patronymic(employee.getPatronymic())
+					.position(employee.getPosition())
+					.role(employee.getRole().getRole())
+					.build();
+			return employeeLoginDto1Cdto;
+		} catch (Exception ex) {
+			ex.getCause().getMessage();
+		}
+		return EmployeeLoginDto1Cdto.builder().build();
 	}
-
 }
+

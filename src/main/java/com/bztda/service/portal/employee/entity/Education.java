@@ -1,5 +1,6 @@
 package com.bztda.service.portal.employee.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Education extends BaseEntity<Long> {
 	@Column(name = "education")
 	private String education;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "education")
 	private List<Employee> employees = new ArrayList<>();
 

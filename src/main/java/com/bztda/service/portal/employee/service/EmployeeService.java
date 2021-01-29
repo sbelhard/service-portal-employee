@@ -7,10 +7,15 @@ import com.bztda.service.portal.employee.entity.Education;
 import com.bztda.service.portal.employee.entity.Employee;
 import com.bztda.service.portal.employee.entity.Role;
 import com.bztda.service.portal.employee.repository.DataEmployee1CRepository;
+import com.bztda.service.portal.employee.repository.DepartmentRepository;
+import com.bztda.service.portal.employee.repository.EducationRepository;
 import com.bztda.service.portal.employee.repository.EmployeeRepository;
+import com.bztda.service.portal.employee.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +25,13 @@ import java.util.List;
 public class EmployeeService {
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private DepartmentRepository departmentRepository;
 
 	@Autowired
-	private DataEmployee1CRepository dataEmployee1CRepository;
+	private EducationRepository educationRepository;
+
+	@Autowired
+	private RoleRepository roleRepository;
 
 	public List<EmployeeEvaluationDto> editEmployee(List<Employee> employees) {
 		List<EmployeeEvaluationDto> employeeEvaluationDtoList = new ArrayList<>();
@@ -40,29 +48,23 @@ public class EmployeeService {
 	}
 
 	public Employee editEmployeeDtoEmployee(EmployeeDto employeeDto) {
+
 		return Employee.builder()
 				.lastName(employeeDto.getLastName())
 				.firstName(employeeDto.getFirstName())
 				.patronymic(employeeDto.getPatronymic())
 				.position(employeeDto.getPosition())
-				.department(Department.builder()
-						.department(employeeDto.getDepartment())
-						.build())
+				.department(departmentRepository.findByDepartment(employeeDto.getDepartment()))
 				.birthDay(LocalDate.parse(employeeDto.getBirthDay()))
 				.numberPass(employeeDto.getNumberPass())
 				.telephone(employeeDto.getTelephone())
 				.email(employeeDto.getEmail())
-				.education(Education.builder()
-						.education(employeeDto.getEducation())
-						.build())
+				.education(educationRepository.findByEducation(employeeDto.getEducation()))
 				.dateEndContract(LocalDate.parse(employeeDto.getDateEndContract()))
 				.dateStartContract(LocalDate.parse(employeeDto.getDateStartContract()))
-				.role(Role.builder()
-						.role("User")
-						.build())
+				.role(roleRepository.findByRole("USER"))
 				.password(employeeDto.getPassword())
 				.hobby(employeeDto.getHobby())
 				.build();
 	}
-
 }

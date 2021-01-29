@@ -72,15 +72,15 @@ public class Employee extends BaseEntity<Long> {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private Department department;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "education_id")
 	private Education education;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;
 
