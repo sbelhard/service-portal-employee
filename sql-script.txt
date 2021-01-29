@@ -242,24 +242,6 @@ INSERT INTO educations
 VALUES (4, 'Высшее образование');
 
 
-INSERT INTO hobbies
-VALUES (1, 'Спорт');
-
-INSERT INTO hobbies
-VALUES (2, 'Литература');
-
-INSERT INTO hobbies
-VALUES (3, 'Кулинария');
-
-INSERT INTO hobbies
-VALUES (4, 'Искусство');
-
-INSERT INTO hobbies
-VALUES (5, 'Охота');
-
-INSERT INTO hobbies
-VALUES (6, 'Рыбалка');
-
 
 INSERT INTO role
 VALUES (1, 'Admin');

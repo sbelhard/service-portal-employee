@@ -59,7 +59,6 @@ public class EmployeeController {
 	@PostMapping(value = "/registry", produces = MediaType.APPLICATION_JSON_VALUE)
 	public EmployeeLoginDto1Cdto registryEmployee(@RequestBody EmployeeDto employeeDto) {
 		Employee employee = employeeRepository.save(employeeService.editEmployeeDtoEmployee(employeeDto));
-		dataEmployee1CRepository.update(true);
 		EmployeeLoginDto1Cdto employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
 				.id(employee.getId())
 				.firstName(employee.getFirstName())
