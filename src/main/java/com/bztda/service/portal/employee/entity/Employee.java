@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,66 +36,63 @@ import java.util.List;
 @Table(name = "employee", schema = "portal_storage")
 public class Employee extends BaseEntity<Long> {
 
-    @Column(name = "last_name")
-    private String lastName;
+	@Column(name = "last_name")
+	private String lastName;
 
-    @Column(name = "first_name")
-    private String firstName;
+	@Column(name = "first_name")
+	private String firstName;
 
-    @Column(name = "patronymic")
-    private String patronymic;
+	@Column(name = "patronymic")
+	private String patronymic;
 
-    @Column(name = "position")
-    private String position;
+	@Column(name = "position")
+	private String position;
 
-    @Column(name = "birth_day")
-    private LocalDate birthDay;
+	@Column(name = "birth_day")
+	private LocalDate birthDay;
 
-    @Column(name = "number_pass")
-    private String numberPass;
+	@Column(name = "hobby")
+	private String hobby;
 
-    @Column(name = "telephone")
-    private String telephone;
+	@Column(name = "number_pass")
+	private String numberPass;
 
-    @Column(name = "email")
-    private String email;
+	@Column(name = "telephone")
+	private String telephone;
 
-    @Column(name = "date_end_contract")
-    private LocalDate dateEndContract;
+	@Column(name = "email")
+	private String email;
 
-    @Column(name = "date_start_contract")
-    private LocalDate dateStartContract;
+	@Column(name = "date_end_contract")
+	private LocalDate dateEndContract;
 
-    @Column(name = "password")
-    private String password;
+	@Column(name = "date_start_contract")
+	private LocalDate dateStartContract;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "department_id")
-    private Department department;
+	@Column(name = "password")
+	private String password;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "education_id")
-    private Education education;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "department_id")
+	private Department department;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    private Role role;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "education_id")
+	private Education education;
 
-    @ManyToMany
-    @JoinTable(name = "employee_hobbies", schema = "portal_storage",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "hobbies_id"))
-    private List<Hobbies> hobbies = new ArrayList<>();
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id")
+	private Role role;
 
-    @OneToMany(mappedBy = "employeeValuing")
-    private List<StaffEvaluate> staffEvaluateValuingEmployee = new ArrayList<>();
+	@OneToMany(mappedBy = "employeeValuing")
+	private List<StaffEvaluate> staffEvaluateValuingEmployee = new ArrayList<>();
 
-    @OneToMany(mappedBy = "employeeEvaluate")
-    private List<StaffEvaluate> staffEvaluateEvaluateEmployee = new ArrayList<>();
+	@OneToMany(mappedBy = "employeeEvaluate")
+	private List<StaffEvaluate> staffEvaluateEvaluateEmployee = new ArrayList<>();
 
-    @OneToMany(mappedBy = "employee")
-    private List<Inquiry> inquiries = new ArrayList<>();
+	@OneToMany(mappedBy = "employee")
+	private List<Inquiry> inquiries = new ArrayList<>();
 
-    @OneToOne(mappedBy = "employee")
-    private Rating rating;
+	@OneToOne(mappedBy = "employee")
+	private Rating rating;
 }

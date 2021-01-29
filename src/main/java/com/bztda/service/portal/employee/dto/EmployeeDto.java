@@ -1,17 +1,11 @@
 package com.bztda.service.portal.employee.dto;
 
-import com.bztda.service.portal.employee.entity.Department;
-import com.bztda.service.portal.employee.entity.Education;
-import com.bztda.service.portal.employee.entity.Hobbies;
 import com.bztda.service.portal.employee.entity.Inquiry;
-import com.bztda.service.portal.employee.entity.Role;
-import com.bztda.service.portal.employee.entity.StaffEvaluate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +29,7 @@ public class EmployeeDto {
 	private String password;
 	private String department;
 	private String education;
-	private String[] hobbies;
+	private String hobby;
 
 	private List<Inquiry> inquiries = new ArrayList<>();
 

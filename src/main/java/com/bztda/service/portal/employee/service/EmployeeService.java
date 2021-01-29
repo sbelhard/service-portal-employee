@@ -2,9 +2,6 @@ package com.bztda.service.portal.employee.service;
 
 import com.bztda.service.portal.employee.dto.EmployeeDto;
 import com.bztda.service.portal.employee.dto.EmployeeEvaluationDto;
-import com.bztda.service.portal.employee.dto.EmployeeLoginDto1Cdto;
-import com.bztda.service.portal.employee.dto.LoginDto;
-import com.bztda.service.portal.employee.entity.DataEmployee1C;
 import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Education;
 import com.bztda.service.portal.employee.entity.Employee;
@@ -24,9 +21,6 @@ public class EmployeeService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
-	@Autowired
-	private HobbiesService hobbiesService;
 
 	@Autowired
 	private DataEmployee1CRepository dataEmployee1CRepository;
@@ -67,7 +61,7 @@ public class EmployeeService {
 						.role("User")
 						.build())
 				.password(employeeDto.getPassword())
-				.hobbies(hobbiesService.editMassHobbiesList(employeeDto.getHobbies()))
+				.hobby(employeeDto.getHobby())
 				.build();
 	}
 
