@@ -35,10 +35,10 @@ public class LoginController {
 	private final DataEmployee1CRepository dataEmployee1CRepository;
 
 	@PostMapping(value = "/first-login", produces = MediaType.APPLICATION_JSON_VALUE)
-	public EmployeeLoginDto1Cdto firstLogin(FirstLoginDto firstloginDto) {
+	public EmployeeLoginDto1Cdto firstLogin(@RequestBody FirstLoginDto firstLoginDto) {
 		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
 		try {
-			DataEmployee1C dataEmployee1C = dataEmployee1CRepository.findByNumberPass(firstloginDto.getNumberPass());
+			DataEmployee1C dataEmployee1C = dataEmployee1CRepository.findByNumberPass(firstLoginDto.getNumberPass());
 			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
 					.lastName(dataEmployee1C.getLastName())
 					.firstName(dataEmployee1C.getFirstName())
@@ -47,7 +47,7 @@ public class LoginController {
 					.dateEndContract(dataEmployee1C.getDateEndContract())
 					.dateStartContract(dataEmployee1C.getDateStartContract())
 					.department(dataEmployee1C.getDepartment())
-					.numberPass(firstloginDto.getNumberPass())
+					.numberPass(firstLoginDto.getNumberPass())
 					.position(dataEmployee1C.getPosition())
 					.isEmployee(dataEmployee1C.isEmployee())
 					.build();
