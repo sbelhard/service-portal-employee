@@ -40,7 +40,7 @@ public class EmployeeController {
 		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
 		employeeLoginDto1Cdto = loginService.getEmployeeLoginDto(loginDto);
 		if (employeeLoginDto1Cdto == null) {
-			DataEmployee1C dataEmployee1C = dataEmployee1CRepository.findByNumberPass(loginDto.getNumberPass());
+			DataEmployee1C dataEmployee1C = dataEmployee1CRepository.findByNumberPass(loginDto.getNumberPassOrEmail());
 			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
 					.lastName(dataEmployee1C.getLastName())
 					.firstName(dataEmployee1C.getFirstName())
@@ -49,7 +49,7 @@ public class EmployeeController {
 					.dateEndContract(dataEmployee1C.getDateEndContract())
 					.dateStartContract(dataEmployee1C.getDateStartContract())
 					.department(dataEmployee1C.getDepartment())
-					.numberPass(loginDto.getNumberPass())
+					.numberPass(loginDto.getNumberPassOrEmail())
 					.position(dataEmployee1C.getPosition())
 					.isEmployee(dataEmployee1C.isEmployee())
 					.build();
