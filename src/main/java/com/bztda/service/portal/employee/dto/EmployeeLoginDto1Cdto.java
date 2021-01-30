@@ -25,6 +25,7 @@ public class EmployeeLoginDto1Cdto {
 	private LocalDate dateEndContract;
 	private LocalDate dateStartContract;
 	private String department;
+	private String email;
 	private boolean isEmployee;
 
 	public EmployeeLoginDto1Cdto(Long id, String lastName, String firstName, String patronymic, String position, String role) {
