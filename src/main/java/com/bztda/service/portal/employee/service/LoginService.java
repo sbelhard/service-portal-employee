@@ -17,7 +17,7 @@ public class LoginService {
 	public EmployeeLoginDto1Cdto getEmployeeLoginDto(LoginDto loginDto) {
 		EmployeeLoginDto1Cdto employeeLoginDto1Cdto;
 		try {
-			Employee employee = employeeRepository.findByEmail(loginDto.getNumberPassOrEmail());
+			Employee employee = employeeRepository.findByEmail(loginDto.getEmail());
 			employeeLoginDto1Cdto = EmployeeLoginDto1Cdto.builder()
 					.id(employee.getId())
 					.firstName(employee.getFirstName())
