@@ -28,14 +28,7 @@ public class EmployeeLoginDto1Cdto {
 	private String email;
 	private boolean isEmployee;
 
-	public EmployeeLoginDto1Cdto(Long id, String lastName, String firstName, String patronymic, String position, String role) {
-		this.id = id;
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.patronymic = patronymic;
-		this.position = position;
-		this.role = role;
-	}
+
 
 	public EmployeeLoginDto1Cdto(String lastName, String firstName, String patronymic, String position, LocalDate birthDay, String numberPass, LocalDate dateEndContract, LocalDate dateStartContract, String department, boolean isEmployee) {
 		this.lastName = lastName;
@@ -47,6 +40,16 @@ public class EmployeeLoginDto1Cdto {
 		this.dateEndContract = dateEndContract;
 		this.dateStartContract = dateStartContract;
 		this.department = department;
+		this.isEmployee = isEmployee;
+	}
+
+	public EmployeeLoginDto1Cdto(Long id, String lastName, String firstName, String patronymic, String position, String role, boolean isEmployee) {
+		this.id = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.patronymic = patronymic;
+		this.position = position;
+		this.role = role;
 		this.isEmployee = isEmployee;
 	}
 }
