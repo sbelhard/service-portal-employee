@@ -25,6 +25,8 @@ public class LoginService {
 					.patronymic(employee.getPatronymic())
 					.position(employee.getPosition())
 					.email(employee.getEmail())
+					.department(employee.getDepartment().getDepartment())
+					.telephone(employee.getTelephone())
 					.role(employee.getRole().getRole())
 					.build();
 			return employeeLoginDto1Cdto;
