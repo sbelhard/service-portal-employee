@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class Rating extends BaseEntity<Long> {
 
 	@Column(name = "rating")
-	private Long rating;
+	private int rating;
 
 	@OneToOne
 	@JoinColumn(name = "employee_id")

@@ -14,6 +14,8 @@ public class EvaluationDto {
 
 	private Long criteriaId;
 	private Long staffEvaluateId;
-	private Double value;
+	private Long staffValuingId;
+	private int value;
+	private String date;
 
 }

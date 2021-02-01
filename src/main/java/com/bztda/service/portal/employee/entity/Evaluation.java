@@ -11,8 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import java.time.LocalDate;
-
 
 @Data
 @EqualsAndHashCode(of = "id")
@@ -25,7 +23,7 @@ import java.time.LocalDate;
 public class Evaluation extends BaseEntity<Long> {
 
 	@Column(name = "value")
-	private Long value;
+	private int value;
 
 	@Column(name = "criteria_id")
 	private Long criteriaId;

@@ -12,7 +12,7 @@ public class EvaluationService {
 		return Evaluation.builder()
 				.criteriaId(evaluationDto.getCriteriaId())
 				.staffEvaluateId(evaluationDto.getStaffEvaluateId())
-				.value(evaluationDto.getValue().longValue())
+				.value(evaluationDto.getValue())
 				.build();
 	}
 }

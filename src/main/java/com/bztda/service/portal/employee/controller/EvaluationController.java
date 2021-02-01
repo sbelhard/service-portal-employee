@@ -2,14 +2,11 @@ package com.bztda.service.portal.employee.controller;
 
 import com.bztda.service.portal.employee.dto.EmployeeEvaluationDto;
 import com.bztda.service.portal.employee.dto.EvaluationDto;
-import com.bztda.service.portal.employee.dto.StaffEvaluateDto;
 import com.bztda.service.portal.employee.entity.Criteria;
 import com.bztda.service.portal.employee.entity.Department;
 import com.bztda.service.portal.employee.entity.Employee;
-import com.bztda.service.portal.employee.entity.Evaluation;
 import com.bztda.service.portal.employee.entity.OverallCriteria;
 import com.bztda.service.portal.employee.entity.Rating;
-import com.bztda.service.portal.employee.entity.StaffEvaluate;
 import com.bztda.service.portal.employee.repository.CriteriaRepository;
 import com.bztda.service.portal.employee.repository.DepartmentRepository;
 import com.bztda.service.portal.employee.repository.EmployeeRepository;
@@ -19,6 +16,7 @@ import com.bztda.service.portal.employee.repository.RatingRepository;
 import com.bztda.service.portal.employee.repository.StaffEvaluateRepository;
 import com.bztda.service.portal.employee.service.EmployeeService;
 import com.bztda.service.portal.employee.service.EvaluationService;
+import com.bztda.service.portal.employee.service.RatingService;
 import com.bztda.service.portal.employee.service.StaffEvaluateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -67,6 +64,9 @@ public class EvaluationController {
 	private final StaffEvaluateService staffEvaluateService;
 
 	@Autowired
+	private final RatingService ratingService;
+
+	@Autowired
 	private final RatingRepository ratingRepository;
 
 	@GetMapping("/department")
@@ -90,23 +90,16 @@ public class EvaluationController {
 		return employeeService.editEmployee(employeeByDepartment);
 	}
 
-	@PostMapping(value = "/staff-evaluation", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Long getStaffEvaluation(@RequestBody StaffEvaluateDto staffEvaluateDto) {
-		StaffEvaluate staffEvaluate = staffEvaluateRepository.save(staffEvaluateService.editStaffEvaluateDtoStaffEvaluate(staffEvaluateDto));
-		Optional<StaffEvaluate> idStaffEvaluate = staffEvaluateRepository.findById(staffEvaluate.getId());
-		return idStaffEvaluate.get().getId();
-	}
-
-	/*@PostMapping(value = "/evaluation-employee", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void getEvaluation(@RequestBody EvaluationDto evaluationDto) {
-		Evaluation evaluation = evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
-		Optional<StaffEvaluate> staffEvaluate = staffEvaluateRepository.findById(evaluation.getStaffEvaluateId());
-		Long evaluateEmployeeId = staffEvaluate.get().getEmployeeEvaluate().getId();
-		if (evaluateEmployeeId != null) {
-			Rating ratingEmployeeId = ratingRepository.findByEmployeeId(evaluateEmployeeId);
-			double rating = (ratingEmployeeId.getRating() + evaluationDto.getValue()) / 2;
-			ratingRepository.update((long) rating);
+	@PostMapping(value = "/evaluation-employee", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int getEvaluation(@RequestBody EvaluationDto evaluationDto) {
+		staffEvaluateRepository.save(staffEvaluateService.editEvaluationDtoStaffEvaluate(evaluationDto));
+		evaluationRepository.save(evaluationService.editEvaluationDtoEvaluation(evaluationDto));
+		if (evaluationDto.getStaffValuingId() != null) {
+			ratingService.updateRatingEmployee(evaluationDto);
+			Rating ratingEmployee = ratingRepository.findByEmployee(
+					employeeRepository.findById(evaluationDto.getStaffValuingId()).orElseThrow(NullPointerException::new));
+			return ratingEmployee.getRating();
 		}
-	}*/
-
+		return 0;
+	}
 }
